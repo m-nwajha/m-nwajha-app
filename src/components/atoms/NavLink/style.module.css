@@ -1,0 +1,89 @@
+.nav_li {
+    position: relative;
+    white-space: nowrap;
+    margin-bottom: 0px;
+    direction: rtl;
+    cursor: pointer;
+}
+
+@media (min-width: 1024px) {
+    .nav_li {
+        margin-bottom: 8px;
+    }
+}
+
+.nav_link,
+.nav_link:focus {
+    width: 48px;
+    height: 48px;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-white);
+    padding: 10px;
+    transition: 0.3s;
+    font-size: 15px;
+    font-weight: 600;
+    background-color: var(--color-secondary);
+    text-shadow: 1px 1px 2px var(--color-black);
+    border-radius: 15px;
+    transition: 0.3s;
+}
+
+@media (min-width: 1024px) {
+
+    .nav_link,
+    .nav_link:focus {
+        width: 56px;
+        height: auto;
+        justify-content: flex-start;
+        padding: 10px 18px;
+    }
+}
+
+.nav_link i,
+.nav_link:focus i {
+    font-size: 1.4rem;
+    text-shadow: 1px 1px 2px var(--color-black);
+}
+
+.nav_link span,
+.nav_link:focus span {
+    padding: 0 5px 0 7px;
+    color: var(--color-white);
+    text-shadow: 1px 1px 2px var(--color-black);
+}
+
+.nav_link span,
+.nav_link:focus span {
+    display: none;
+    color: var(--color-white);
+}
+
+.nav_link:hover,
+.active,
+.active:focus,
+.nav_li:hover>a {
+    color: var(--color-white);
+    background: #00494d;
+}
+
+.nav_link:hover span,
+.navbar .active span,
+.navbar .active:focus span,
+.nav_li:hover>a span {
+    color: var(--color-white);
+}
+
+.nav_link:hover,
+.nav_li:hover>a {
+    width: 100%;
+    color: var(--color-white);
+}
+
+.nav_link:hover span,
+.nav_li:hover>a span {
+    display: block;
+}
