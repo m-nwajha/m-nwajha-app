@@ -30,6 +30,6 @@
     ".next/dev/types/**/*.ts",
     "**/*.mts",
     "src/types/global.d.ts"
-  ],
+, "migrate-blogs.ts56"  ],
   "exclude": ["node_modules"]
 }

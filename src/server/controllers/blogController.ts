@@ -25,7 +25,7 @@ export const getBlogs = async (req: NextRequest) => {
         }
 
         if (tag) {
-            query.tech = tag;
+            query.tag = tag;
         }
 
         if (search) {
@@ -89,10 +89,11 @@ export const createBlog = async (req: NextRequest) => {
             data.description = formData.get('description') as string;
             data.content = formData.get('content') as string;
             data.link = formData.get('link') as string;
+            data.videoUrl = formData.get('videoUrl') as string;
             data.rating = parseFloat(formData.get('rating') as string) || 5;
 
-            const techRaw = formData.get('tech') as string;
-            data.tech = techRaw ? techRaw.split(',').map((s: string) => s.trim()).filter(Boolean) : [];
+            const tagRaw = formData.get('tag') as string;
+            data.tag = tagRaw ? tagRaw.split(',').map((s: string) => s.trim()).filter(Boolean) : [];
 
             const imageFile = formData.get('image');
             if (imageFile && imageFile instanceof File && imageFile.size > 0) {
@@ -124,7 +125,7 @@ export const updateBlog = async (id: string, req: NextRequest) => {
 
         if (contentType?.includes('multipart/form-data')) {
             const formData = await req.formData();
-            ['title', 'category', 'filter', 'description', 'content', 'link'].forEach(key => {
+            ['title', 'category', 'filter', 'description', 'content', 'link', 'videoUrl'].forEach(key => {
                 const val = formData.get(key);
                 if (val !== null) updateData[key] = val;
             });
@@ -132,9 +133,9 @@ export const updateBlog = async (id: string, req: NextRequest) => {
             const ratingVal = formData.get('rating');
             if (ratingVal !== null) updateData.rating = parseFloat(ratingVal as string);
 
-            const techRaw = formData.get('tech') as string;
-            if (techRaw !== null) {
-                updateData.tech = techRaw.split(',').map((s: string) => s.trim()).filter(Boolean);
+            const tagRaw = formData.get('tag') as string;
+            if (tagRaw !== null) {
+                updateData.tag = tagRaw.split(',').map((s: string) => s.trim()).filter(Boolean);
             }
 
             const imageFile = formData.get('image');

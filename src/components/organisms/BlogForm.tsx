@@ -25,10 +25,11 @@ const BlogForm: React.FC<BlogFormProps> = ({ blog, onClose, onSuccess }) => {
         filter: blog?.filter || BLOGS_DATA.filters[1].id,
         description: blog?.description || '',
         content: blog?.content || '',
-        tech: blog?.tech?.join(', ') || '',
+        tag: blog?.tag?.join(', ') || '',
         rating: blog?.rating || 5,
         link: blog?.link || '#',
         detailsLink: blog?.detailsLink || '#',
+        videoUrl: blog?.videoUrl || '',
     });
 
     const [imageFile, setImageFile] = useState<File | null>(null);
@@ -50,7 +51,7 @@ const BlogForm: React.FC<BlogFormProps> = ({ blog, onClose, onSuccess }) => {
         if (e) e.preventDefault();
 
         try {
-            const techArr = formData.tech.split(',').map((s: string) => s.trim()).filter(Boolean);
+            const tagArr = formData.tag.split(',').map((s: string) => s.trim()).filter(Boolean);
 
             const data = new FormData();
             data.append('title', formData.title);
@@ -59,8 +60,9 @@ const BlogForm: React.FC<BlogFormProps> = ({ blog, onClose, onSuccess }) => {
             data.append('description', formData.description);
             data.append('content', formData.content);
             data.append('link', formData.link);
+            data.append('videoUrl', formData.videoUrl);
             data.append('rating', String(formData.rating));
-            data.append('tech', techArr.join(','));
+            data.append('tag', tagArr.join(','));
 
             // Append actual file for Cloudinary upload
             if (imageFile) {
@@ -124,6 +126,7 @@ const BlogForm: React.FC<BlogFormProps> = ({ blog, onClose, onSuccess }) => {
                                 required
                             />
                         </div>
+
 
                         <div className="grid grid-cols-2 gap-4">
                             <div>
@@ -192,11 +195,20 @@ const BlogForm: React.FC<BlogFormProps> = ({ blog, onClose, onSuccess }) => {
                         </div>
 
                         <div>
-                            <label className="block text-sm font-medium text-light/60 mb-2">الهاشتاجات (فواصل)</label>
+                            <label className="block text-sm font-medium text-light/60 mb-2">الوسوم (فواصل)</label>
                             <Input
-                                value={formData.tech}
-                                onChange={(e) => setFormData({ ...formData, tech: e.target.value })}
+                                value={formData.tag}
+                                onChange={(e) => setFormData({ ...formData, tag: e.target.value })}
                                 placeholder="React, Frontend, Web"
+                            />
+                        </div>
+
+                        <div>
+                            <label className="block text-sm font-medium text-light/60 mb-2">رابط فيديو اليوتيوب</label>
+                            <Input
+                                value={formData.videoUrl}
+                                onChange={(e) => setFormData({ ...formData, videoUrl: e.target.value })}
+                                placeholder="https://www.youtube.com/watch?v=..."
                             />
                         </div>
                     </div>

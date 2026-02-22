@@ -69,7 +69,7 @@ const BlogTagPage = ({ tag, initialBlogs = [] }: BlogTagPageProps) => {
                                     description={blog.description}
                                     rating={blog.rating}
                                     image={blog.image}
-                                    tech={blog.tech}
+                                    tag={blog.tag}
                                     detailsLink={String(blog._id)}
                                 />
                             </motion.div>

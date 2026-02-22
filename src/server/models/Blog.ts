@@ -8,10 +8,10 @@ export interface IBlog extends Document {
     image?: string;
     description: string;
     content?: string;
-    tech: string[];
+    tag: string[];
     link?: string;
     detailsLink?: string;
-    slug: string;
+    videoUrl?: string;
     verified: boolean;
     createdAt: Date;
     updatedAt: Date;
@@ -26,10 +26,10 @@ const BlogSchema: Schema = new Schema(
         image: { type: String },
         description: { type: String, required: true },
         content: { type: String },
-        tech: { type: [String], default: [] },
+        tag: { type: [String], default: [] },
         link: { type: String },
         detailsLink: { type: String },
-        slug: { type: String, unique: true, sparse: true },
+        videoUrl: { type: String },
         verified: { type: Boolean, default: true },
     },
     {

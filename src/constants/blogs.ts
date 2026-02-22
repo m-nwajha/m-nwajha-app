@@ -16,7 +16,7 @@ export const BLOGS_DATA = {
             rating: 4.8,
             image: '/assets/images/Rwaq-mockup.png',
             description: 'استكشاف كيف تقود المنصات الرقمية الابتكار في المؤسسات الحديثة.',
-            tech: ['React', 'Node.js', 'AWS'],
+            tag: ['React', 'Node.js', 'AWS'],
             link: '#',
             detailsLink: '#'
         },
@@ -28,7 +28,7 @@ export const BLOGS_DATA = {
             rating: 4.9,
             image: '/assets/images/screen-1.png',
             description: 'حلول ذكية لتحسين الإنتاجية الشخصية باستخدام تقنيات الذكاء الاصطناعي.',
-            tech: ['Flutter', 'Firebase', 'AI'],
+            tag: ['Flutter', 'Firebase', 'AI'],
             link: '#',
             detailsLink: '#'
         },
@@ -40,7 +40,7 @@ export const BLOGS_DATA = {
             rating: 5.0,
             image: '/assets/images/Rwaq-mockup.png',
             description: 'بناء علامة تجارية قوية تترك أثراً دائماً في السوق التنافسي.',
-            tech: ['Illustrator', 'Figma', 'Brand'],
+            tag: ['Illustrator', 'Figma', 'Brand'],
             link: '#',
             detailsLink: '#'
         },
@@ -52,7 +52,7 @@ export const BLOGS_DATA = {
             rating: 4.7,
             image: '/assets/images/Rwaq-mockup.png',
             description: 'أفضل الممارسات لتصميم لوحات تحكم سهلة الاستخدام ومعقدة البيانات.',
-            tech: ['Figma', 'Prototyping', 'UX'],
+            tag: ['Figma', 'Prototyping', 'UX'],
             link: '#',
             detailsLink: '#'
         },
@@ -64,7 +64,7 @@ export const BLOGS_DATA = {
             rating: 4.6,
             image: '/assets/images/Rwaq-mockup.png',
             description: 'تطوير متاجر إلكترونية متكاملة تركز على تجربة المستخدم وزيادة التحويل.',
-            tech: ['Shopify', 'React', 'API'],
+            tag: ['Shopify', 'React', 'API'],
             link: '#',
             detailsLink: '#'
         },
@@ -76,7 +76,7 @@ export const BLOGS_DATA = {
             rating: 4.8,
             image: '/assets/images/screen-1.png',
             description: 'تأثير تكنولوجيا البلوكشين على مستقبل الخدمات المالية والمصرفية.',
-            tech: ['Swift', 'Kotlin', 'Blockchain'],
+            tag: ['Swift', 'Kotlin', 'Blockchain'],
             link: '#',
             detailsLink: '#'
         }

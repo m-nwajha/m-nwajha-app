@@ -11,7 +11,7 @@ interface BlogItemProps {
     description: string;
     rating?: number;
     image?: string;
-    tech: string[];
+    tag: string[];
     link?: string;
     detailsLink: string;
 }
@@ -24,12 +24,17 @@ const BlogItem: FC<BlogItemProps> = ({
     description,
     rating = 5,
     image = '/assets/images/placeholder-blog.jpg',
-    tech,
+    tag = [],
     link = '#',
     detailsLink
 }) => {
+    const words = description.split(/\s+/);
+    const truncatedDescription = words.length > 30
+        ? words.slice(0, 30).join(' ') + '...'
+        : description;
+
     return (
-        <article className="group bg-linear-to-b from-white/3 to-white/1 border border-white/5 rounded-3xl overflow-hidden transition-all duration-400 hover:-translate-y-2 hover:shadow-2xl hover:shadow-secondary/10 hover:border-secondary/20">
+        <article className="group bg-linear-to-b from-white/3 to-white/1 border border-white/5 rounded-3xl overflow-hidden transition-all duration-400 hover:-translate-y-2 hover:shadow-2xl hover:shadow-secondary/10 hover:border-secondary/20" >
             <BlogThumbnail
                 src={image}
                 alt={title}
@@ -47,21 +52,21 @@ const BlogItem: FC<BlogItemProps> = ({
                     {title}
                 </Typography>
 
-                <Typography variant="p" size="h6" color="light" className="mb-6 opacity-70 line-clamp-2 leading-relaxed">
-                    {description}
+                <Typography variant="p" size="h6" color="light" className="mb-6 opacity-70 line-clamp-2 leading-relaxed h-12">
+                    {truncatedDescription}
                 </Typography>
 
                 <div className="flex flex-wrap gap-2">
-                    {tech.map((tag, idx) => (
-                        <Link key={idx} href={`/blogs/tag/${encodeURIComponent(tag)}`} className="block transform transition-transform hover:scale-105 active:scale-95">
+                    {tag.map((item, idx) => (
+                        <Link key={idx} href={`/blogs/tag/${encodeURIComponent(item)}`} className="block transform transition-transform hover:scale-105 active:scale-95">
                             <Badge variant="outline" showHash={true} className="cursor-pointer hover:border-secondary/40 hover:bg-secondary/5">
-                                {tag}
+                                {item}
                             </Badge>
                         </Link>
                     ))}
                 </div>
             </div>
-        </article>
+        </article >
     );
 };
 

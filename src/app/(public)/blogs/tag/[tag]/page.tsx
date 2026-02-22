@@ -19,7 +19,7 @@ export default async function BlogTag({ params }: { params: Promise<{ tag: strin
 
     try {
         await connectDB();
-        const items = await Blog.find({ verified: true, tech: decodedTag })
+        const items = await Blog.find({ verified: true, tag: decodedTag })
             .sort({ createdAt: -1 })
             .limit(100)
             .lean();
