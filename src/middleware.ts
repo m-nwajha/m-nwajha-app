@@ -2,25 +2,26 @@ import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 
 export function middleware(request: NextRequest) {
-    // Only protect routes starting with /api
-    if (request.nextUrl.pathname.startsWith('/api')) {
-        const apiKey = request.headers.get('x-api-key');
-        const validApiKey = process.env.NEXT_PUBLIC_API_KEY;
+    const token = request.cookies.get('token')?.value;
+    const { pathname } = request.nextUrl;
 
-        // Skip check if no API_KEY is defined (e.g. for development convenience if needed, 
-        // but here we expect it to be defined)
-        if (!validApiKey || apiKey !== validApiKey) {
-            return NextResponse.json(
-                { error: '🚫 Unauthorized: Invalid or missing API Key' },
-                { status: 401 }
-            );
+    // Protect dashboard routes
+    if (pathname.startsWith('/dashboard')) {
+        if (!token) {
+            return NextResponse.redirect(new URL('/login-app', request.url));
+        }
+    }
+
+    // Redirect to dashboard if logged in and trying to access login-app page
+    if (pathname === '/login-app') {
+        if (token) {
+            return NextResponse.redirect(new URL('/dashboard', request.url));
         }
     }
 
     return NextResponse.next();
 }
 
-// See "Matching Paths" below to learn more
 export const config = {
-    matcher: '/api/:path*',
+    matcher: ['/dashboard/:path*', '/login-app'],
 };

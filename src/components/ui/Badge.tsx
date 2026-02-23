@@ -10,9 +10,10 @@ interface BadgeProps {
     variant?: 'primary' | 'secondary' | 'outline' | 'success';
     className?: string;
     showHash?: boolean;
+    onClick?: () => void;
 }
 
-export const Badge = ({ children, variant = 'secondary', href, className, showHash = false }: BadgeProps) => {
+export const Badge = ({ children, variant = 'secondary', href, className, showHash = false, onClick }: BadgeProps) => {
     const badgeContent = (
         <>
             {showHash && '# '}
@@ -39,7 +40,7 @@ export const Badge = ({ children, variant = 'secondary', href, className, showHa
     }
 
     return (
-        <span className={classes}>
+        <span className={classes} onClick={onClick}>
             {badgeContent}
         </span>
     );

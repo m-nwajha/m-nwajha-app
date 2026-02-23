@@ -3,7 +3,7 @@
 import React from 'react';
 
 interface DashboardActionButtonsProps {
-    onEdit: () => void;
+    onEdit?: () => void;
     onDelete: () => void;
     viewHref?: string;
     isLoading?: boolean;
@@ -28,14 +28,16 @@ const DashboardActionButtons: React.FC<DashboardActionButtonsProps> = ({
                     <i className="bi bi-eye"></i>
                 </a>
             )}
-            <button
-                onClick={onEdit}
-                className="w-9 h-9 flex items-center justify-center rounded-xl bg-blue-500/5 hover:bg-blue-500/20 text-blue-400 border border-blue-500/10 transition-all"
-                title="تعديل"
-                type="button"
-            >
-                <i className="bi bi-pencil-square"></i>
-            </button>
+            {onEdit && (
+                <button
+                    onClick={onEdit}
+                    className="w-9 h-9 flex items-center justify-center rounded-xl bg-blue-500/5 hover:bg-blue-500/20 text-blue-400 border border-blue-500/10 transition-all"
+                    title="تعديل"
+                    type="button"
+                >
+                    <i className="bi bi-pencil-square"></i>
+                </button>
+            )}
             <button
                 onClick={onDelete}
                 disabled={isLoading}

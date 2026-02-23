@@ -1,6 +1,6 @@
 'use client';
 
-import { FC } from 'react';
+import { FC, useState, useEffect } from 'react';
 import { Typography, Badge } from '../ui';
 import { motion } from 'framer-motion';
 import BlogRatingScale from '../atoms/BlogRatingScale';
@@ -42,12 +42,17 @@ const itemVariants = {
 } as const;
 
 const BlogDetailsContent: FC<BlogDetailsContentProps> = ({ blog }) => {
+    const [pageUrl, setPageUrl] = useState('');
+
+    useEffect(() => {
+        if (typeof window !== 'undefined') {
+            setPageUrl(window.location.href);
+        }
+    }, []);
+
     const displayDate = blog.createdAt
         ? new Date(blog.createdAt).toLocaleDateString('ar-EG', { year: 'numeric', month: 'long', day: 'numeric' })
         : 'قريباً';
-
-    // In a real app, this would be the actual page URL
-    const pageUrl = typeof window !== 'undefined' ? window.location.href : '';
 
     return (
         <motion.div

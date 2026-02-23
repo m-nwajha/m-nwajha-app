@@ -3,6 +3,7 @@ import { Almarai, Space_Grotesk } from 'next/font/google';
 import '../styles/globals.css';
 import MainLayout from '@/components/layouts/MainLayout';
 import { ToastProvider } from '@/components/ui';
+import { AuthProvider } from '@/context/AuthContext';
 
 const almarai = Almarai({
   variable: '--font-almarai',
@@ -28,9 +29,11 @@ export default function RootLayout({
       lang='ar'
       className={`${almarai.variable} ${spaceGrotesk.variable}`}>
       <body dir='rtl'>
-        <ToastProvider>
-          {children}
-        </ToastProvider>
+        <AuthProvider>
+          <ToastProvider>
+            {children}
+          </ToastProvider>
+        </AuthProvider>
       </body>
     </html>
   );

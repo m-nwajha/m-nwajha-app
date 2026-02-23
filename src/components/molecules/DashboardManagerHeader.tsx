@@ -9,8 +9,8 @@ interface DashboardManagerHeaderProps {
     subtitle?: string;
     icon: string;
     count?: number;
-    onAdd: () => void;
-    addButtonLabel: string;
+    onAdd?: () => void;
+    addButtonLabel?: string;
 }
 
 const DashboardManagerHeader: React.FC<DashboardManagerHeaderProps> = ({
@@ -22,7 +22,7 @@ const DashboardManagerHeader: React.FC<DashboardManagerHeaderProps> = ({
     addButtonLabel,
 }) => {
     return (
-        <Box display="flex" justifyContent="between" alignItems="center" className="mb-8">
+        <Box display="flex" justifyContent="between" alignItems="center" direction='col' gap={8} className="mb-8 lg:flex-row">
             <div className="flex items-center gap-4">
                 <div className="w-12 h-12 rounded-2xl bg-secondary/10 flex items-center justify-center text-secondary shadow-lg shadow-secondary/5 border border-secondary/10">
                     <i className={CN("bi text-2xl", icon)}></i>
@@ -34,14 +34,16 @@ const DashboardManagerHeader: React.FC<DashboardManagerHeaderProps> = ({
                     {subtitle && <Typography className="text-light text-sm">{subtitle}</Typography>}
                 </div>
             </div>
-            <Button
-                onClick={onAdd}
-                variant="bg"
-                className="h-12 px-6 rounded-xl font-bold bg-secondary hover:scale-105 active:scale-95 transition-all shadow-lg shadow-secondary/20"
-            >
-                <i className="bi bi-plus-lg ml-2"></i>
-                {addButtonLabel}
-            </Button>
+            {onAdd && (
+                <Button
+                    onClick={onAdd}
+                    variant="bg"
+                    className="h-12 px-6 rounded-xl font-bold bg-secondary hover:scale-105 active:scale-95 transition-all shadow-lg shadow-secondary/20"
+                >
+                    <i className="bi bi-plus-lg ml-2"></i>
+                    {addButtonLabel}
+                </Button>
+            )}
         </Box>
     );
 };
