@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+export const dynamic = 'force-dynamic';
 import connectDB from '@/config/mongodb';
 import { getTestimonials, createTestimonial } from '@/server/controllers/testimonialController';
 

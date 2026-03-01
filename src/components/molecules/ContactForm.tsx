@@ -7,7 +7,7 @@ import useAPI from '@/hooks/useAPI';
 import { ENDPOINTS } from '@/constants/endpoints';
 
 const ContactForm = () => {
-    const { post, isLoading } = useAPI(ENDPOINTS.contacts);
+    const { post, isLoading } = useAPI();
     const { showToast } = useToast();
     const [formData, setFormData] = useState({
         name: '',
@@ -15,11 +15,16 @@ const ContactForm = () => {
         subject: '',
         message: ''
     });
-
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
+        const web3formsBody = {
+            ...formData, access_key: process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY
+        };
         try {
-            await post(formData);
+            await Promise.all([
+                post(web3formsBody, process.env.NEXT_PUBLIC_WEB3FORMS_API_URL),
+                post(formData, ENDPOINTS.contacts)
+            ]);
             showToast('تم إرسال رسالتك بنجاح! سنقوم بالرد عليك قريباً.', 'success');
             setFormData({ name: '', email: '', subject: '', message: '' });
         } catch (error) {

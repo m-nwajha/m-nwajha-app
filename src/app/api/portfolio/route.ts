@@ -1,4 +1,5 @@
 import { NextRequest } from 'next/server';
+export const dynamic = 'force-dynamic';
 import connectDB from '@/config/mongodb';
 import { getPortfolioItems, createPortfolioItem } from '@/server/controllers/portfolioController';
 

@@ -29,14 +29,14 @@ const DashboardModal: React.FC<DashboardModalProps> = ({
     return (
         <AnimatePresence>
             {isOpen && (
-                <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-8">
+                <div className="fixed inset-0 z-[9999] flex items-center justify-center p-4 md:p-8">
                     {/* Overlay */}
                     <motion.div
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
                         onClick={onClose}
-                        className="absolute inset-0 bg-dark/60 backdrop-blur-md"
+                        className="absolute inset-0 bg-black/80 backdrop-blur-md"
                     />
 
                     {/* Modal Content */}
@@ -45,7 +45,7 @@ const DashboardModal: React.FC<DashboardModalProps> = ({
                         animate={{ opacity: 1, scale: 1, y: 0 }}
                         exit={{ opacity: 0, scale: 0.9, y: 20 }}
                         className={CN(
-                            "relative w-full bg-primary/50 border border-secondary/10 rounded-[2rem] shadow-2xl flex flex-col overflow-hidden max-h-full",
+                            "relative w-full bg-primary/95 border border-secondary/20 rounded-[2rem] shadow-2xl flex flex-col overflow-hidden max-h-full",
                             maxWidth,
                             className
                         )}

@@ -34,7 +34,7 @@ const initialState: State = {
   error: null,
 };
 
-const useAPI = (url: string, apiKey?: string) => {
+const useAPI = (url?: string, apiKey?: string) => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   const getHeaders = useCallback((isFormData = false) => {
@@ -63,10 +63,10 @@ const useAPI = (url: string, apiKey?: string) => {
     }
   }, [url, getHeaders, handleError]);
 
-  const post = useCallback(async (body: any, isFormData = false) => {
+  const post = useCallback(async (body: any, customUrl?: string, isFormData = false) => {
     dispatch({ type: INIT });
     try {
-      const response = await axios.post(url, body, {
+      const response = await axios.post(customUrl || url, body, {
         headers: getHeaders(body instanceof FormData || isFormData),
       });
       dispatch({ type: SUCCESS, payload: response.data });

@@ -12,7 +12,7 @@ import { Input, Typography, Box } from '../ui';
 import useAPI from '@/hooks/useAPI';
 import Pagination from '../molecules/Pagination';
 import { IBlog } from '@/server/models/Blog';
-import { BLOGS_DATA } from '@/constants/blogs'; // Keep this for filters for now
+import { BLOGS_DATA } from '@/constants/blogs'; 
 import { ENDPOINTS } from '@/constants/endpoints';
 
 interface BlogsPageProps {
@@ -44,17 +44,14 @@ const BlogsPage = ({ initialBlogs = [], initialPagination }: BlogsPageProps) => 
         }
         isFirstMount.current = false;
         fetchBlogs(currentPage, activeFilter, searchQuery);
-        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [currentPage, activeFilter]);
 
-    // Debounced search - only reacts to searchQuery changes
     useEffect(() => {
         const timer = setTimeout(() => {
             setCurrentPage(1);
             fetchBlogs(1, activeFilter, searchQuery);
         }, 500);
         return () => clearTimeout(timer);
-        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [searchQuery]);
 
     const breadcrumbs = [
@@ -70,7 +67,7 @@ const BlogsPage = ({ initialBlogs = [], initialPagination }: BlogsPageProps) => 
         <SubPageLayout
             title="المقالات"
             breadcrumbs={breadcrumbs}
-            heroTitle="مدونة نواجحة التقنية"
+            heroTitle="مدونة Nawjha Tech"
             heroDescription="اكتشف أحدث المقالات والدروس التعليمية في مجال البرمجة والتصميم"
         >
             <div className="max-w-2xl mx-auto mb-16 relative">

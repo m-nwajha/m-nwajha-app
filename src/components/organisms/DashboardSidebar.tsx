@@ -4,7 +4,7 @@ import React from 'react';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import { CN } from '@/utils/className';
-import axios from 'axios';
+import useAPI from '@/hooks/useAPI';
 
 const sidebarLinks = [
     { href: '/dashboard', label: 'نظرة عامة', icon: 'bi-grid-1x2' },
@@ -23,11 +23,12 @@ interface DashboardSidebarProps {
 const DashboardSidebar: React.FC<DashboardSidebarProps> = ({ isOpen, onClose }) => {
     const pathname = usePathname();
     const router = useRouter();
+    const { post: logoutAPI } = useAPI('/api/auth/logout');
 
     const handleLogout = async () => {
         if (window.confirm('هل أنت متأكد من تسجيل الخروج؟')) {
             try {
-                await axios.post('/api/auth/logout');
+                await logoutAPI({});
                 router.push('/login-app');
                 router.refresh();
             } catch (error) {

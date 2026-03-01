@@ -1,4 +1,5 @@
 import { NextRequest } from 'next/server';
+export const dynamic = 'force-dynamic';
 import { getBlogs, createBlog } from '@/server/controllers/blogController';
 
 export async function GET(req: NextRequest) {

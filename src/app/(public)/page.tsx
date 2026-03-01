@@ -6,20 +6,23 @@ import Blog from '@/server/models/Blog';
 
 async function getPortfolioData() {
   try {
-    await connectDB();
-    const items = await Portfolio.find({}).sort({ createdAt: -1 });
-    return JSON.parse(JSON.stringify(items));
+    const items = await Portfolio.find({}).sort({ createdAt: -1 }).lean();
+    return items.map(item => ({
+      ...item,
+      _id: String(item._id)
+    }));
   } catch (error) {
     console.error('Error fetching portfolio data:', error);
     return [];
   }
 }
-
 async function getTestimonialData() {
   try {
-    await connectDB();
-    const items = await Testimonial.find({ verified: true }).sort({ createdAt: -1 });
-    return JSON.parse(JSON.stringify(items));
+    const items = await Testimonial.find({ verified: true }).lean();
+    return items.map((item) => ({
+      ...item,
+      _id: String(item._id)
+    }));
   } catch (error) {
     console.error('Error fetching testimonials:', error);
     return [];
@@ -28,7 +31,6 @@ async function getTestimonialData() {
 
 async function getBlogsData() {
   try {
-    await connectDB();
     const items = await Blog.find({ verified: true })
       .sort({ createdAt: -1 })
       .limit(3)
@@ -46,6 +48,7 @@ async function getBlogsData() {
 }
 
 export default async function Home() {
+  await connectDB();
   const [portfolioData, testimonialData, blogsData] = await Promise.all([
     getPortfolioData(),
     getTestimonialData(),

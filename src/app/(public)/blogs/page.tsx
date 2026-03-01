@@ -3,8 +3,8 @@ import connectDB from '@/config/mongodb';
 import Blog from '@/server/models/Blog';
 
 export const metadata = {
-    title: 'المقالات | نواجحة تك',
-    description: 'مدونة نواجحة التقنية - اكتشف أحدث المقالات والدروس التعليمية في مجال البرمجة والتصميم',
+    title: 'المقالات | Nawjha Tech',
+    description: 'مدونة Nawjha Tech - اكتشف أحدث المقالات والدروس التعليمية في مجال البرمجة والتصميم',
 };
 
 const PAGE_SIZE = 6;
@@ -15,11 +15,10 @@ export default async function Blogs() {
 
     try {
         await connectDB();
-        const total = await Blog.countDocuments({ verified: true });
-        const items = await Blog.find({ verified: true })
-            .sort({ createdAt: -1 })
-            .limit(PAGE_SIZE)
-            .lean(); // lean() returns plain objects (serializable), not Mongoose documents
+        const [total, items] = await Promise.all([
+            Blog.countDocuments({ verified: true }),
+            Blog.find({ verified: true }).sort({ createdAt: -1 }).limit(PAGE_SIZE).lean()
+        ]);
 
         initialBlogs = items.map(item => ({
             ...item,

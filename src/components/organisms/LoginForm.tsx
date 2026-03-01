@@ -18,7 +18,14 @@ const LoginForm = () => {
         setIsLoading(true);
 
         try {
-            const response = await axios.post('/api/auth/login', { email, password });
+            const response = await axios.post('/api/auth/login',
+                { email, password },
+                {
+                    headers: {
+                        'x-api-key': process.env.NEXT_PUBLIC_API_KEY || ''
+                    }
+                }
+            );
             if (response.data.success) {
                 showToast('تم تسجيل الدخول بنجاح', 'success');
                 router.push('/dashboard');
