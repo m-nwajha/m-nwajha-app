@@ -46,7 +46,8 @@ const ServicesGrid = () => {
                                 ))}
                             </div>
                         </Box>
-                        <Button variant='outline' className='mt-6' href='/'>طلب الخدمة <i className='bi bi-arrow-left mx-1 transition-all ease-in group-hover:mr-2 '></i></Button>
+                        <Button variant='outline' className='mt-6' href='https://forms.gle/Hr8iHEt1znKc6ci97' target='_blank'>طلب الخدمة <i className='bi bi-arrow-left mx-1 transition-all ease-in group-hover:mr-2 '></i></Button>
+
                     </Card>
                 </motion.div>
             ))}

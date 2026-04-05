@@ -14,9 +14,11 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
     children?: ReactNode;
     href?: string;
     variant?: 'bg' | 'outline';
+    target?: string;
 }
 
-export const Button: FC<ButtonProps> = ({ children, onClick, href, className, variant = 'bg', type = 'button', ...props }) => {
+export const Button: FC<ButtonProps> = ({ children, onClick, href, target, className, variant = 'bg', type = 'button', ...props }) => {
+
     const [ripples, setRipples] = useState<Ripple[]>([]);
 
     const handleClick = (event: MouseEvent<HTMLButtonElement>) => {
@@ -65,11 +67,12 @@ export const Button: FC<ButtonProps> = ({ children, onClick, href, className, va
 
     if (href) {
         return (
-            <Link href={href}>
+            <Link href={href} target={target}>
                 {buttonElement}
             </Link>
         );
     }
+
 
     return buttonElement;
 };

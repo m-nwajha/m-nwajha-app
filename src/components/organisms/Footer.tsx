@@ -60,10 +60,10 @@ const Footer = () => {
                         <strong>
                             <a
                                 className='mx-1 text-secondary hover:text-secondary/50 transition-colors duration-300'
-                                href='https://nawjha.com'
+                                href={process.env.NEXT_PUBLIC_APP_URL}
                                 target='_blank'
                                 rel='noopener noreferrer'>
-                                nawjha.tech
+                                nawjha tech
                             </a>
                         </strong>
                         . All Rights Reserved

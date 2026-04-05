@@ -4,26 +4,26 @@ export const FOOTER_DATA = {
         {
             key: 'facebook',
             label: 'Facebook',
-            url: 'https://facebook.com',
+            url: 'https://facebook.com/nwajha.tech',
             icon: 'bi-facebook',
         },
         {
-            key: 'instagram',
-            label: 'Instagram',
-            url: 'https://instagram.com',
-            icon: 'bi-instagram',
+            key: 'twitter',
+            label: 'Twitter X',
+            url: 'https://twitter.com/nawjha_m',
+            icon: 'bi-twitter-x',
         },
         {
             key: 'linkedin',
             label: 'LinkedIn',
-            url: 'https://linkedin.com',
+            url: 'https://linkedin.com/in/m-nwajha',
             icon: 'bi-linkedin',
         },
         {
-            key: 'twitter',
-            label: 'Twitter',
-            url: 'https://twitter.com',
-            icon: 'bi-twitter-x',
+            key: 'github',
+            label: 'GitHub',
+            url: 'https://github.com/m-nwajha',
+            icon: 'bi-github',
         },
     ]
 };
