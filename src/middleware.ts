@@ -8,10 +8,10 @@ export function middleware(request: NextRequest) {
 
     // 1. API Protection (Must be first for API calls)
     if (pathname.startsWith('/api')) {
-        // Skip API key check for auth routes if needed, 
-        // but user asked for general PROTECTION.
-        // Usually, we protect all except maybe login if the key is strictly for authorized clients.
-        // Since useAPI sends it everywhere, we can check it everywhere.
+        // Skip API key check for setup-admin and auth routes if needed
+        if (pathname === '/api/setup-admin') {
+            return NextResponse.next();
+        }
         if (apiKey !== process.env.NEXT_PUBLIC_API_KEY) {
             return NextResponse.json(
                 { success: false, error: 'Unauthorized: Invalid API Key' },
