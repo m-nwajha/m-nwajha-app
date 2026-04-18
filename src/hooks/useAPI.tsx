@@ -51,7 +51,7 @@ const useAPI = (url?: string, apiKey?: string) => {
   const get = useCallback(async (customUrl?: string) => {
     dispatch({ type: INIT });
     try {
-      const response = await axios.get(customUrl || url, {
+      const response = await axios.get(customUrl || url || '', {
         headers: getHeaders(),
       });
       dispatch({ type: SUCCESS, payload: response.data });
@@ -66,7 +66,7 @@ const useAPI = (url?: string, apiKey?: string) => {
   const post = useCallback(async (body: any, customUrl?: string, isFormData = false) => {
     dispatch({ type: INIT });
     try {
-      const response = await axios.post(customUrl || url, body, {
+      const response = await axios.post(customUrl || url || '', body, {
         headers: getHeaders(body instanceof FormData || isFormData),
       });
       dispatch({ type: SUCCESS, payload: response.data });
@@ -79,7 +79,7 @@ const useAPI = (url?: string, apiKey?: string) => {
   const update = useCallback(async (body: any, id?: string) => {
     dispatch({ type: INIT });
     try {
-      const endpoint = id ? `${url}/${id}` : url;
+      const endpoint = id ? `${url}/${id}` : url || '';
       const response = await axios.put(endpoint, body, {
         headers: getHeaders(body instanceof FormData),
       });
@@ -93,7 +93,7 @@ const useAPI = (url?: string, apiKey?: string) => {
   const del = useCallback(async (id?: string) => {
     dispatch({ type: INIT });
     try {
-      const endpoint = id ? `${url}/${id}` : url;
+      const endpoint = id ? `${url}/${id}` : url || '';
       const response = await axios.delete(endpoint, {
         headers: getHeaders(),
       });
@@ -106,7 +106,7 @@ const useAPI = (url?: string, apiKey?: string) => {
   const patch = useCallback(async (body: any, isFormData = false, id?: string) => {
     dispatch({ type: INIT });
     try {
-      const endpoint = id ? `${url}/${id}` : url;
+      const endpoint = id ? `${url}/${id}` : url || '';
       const response = await axios.patch(endpoint, body, {
         headers: getHeaders(body instanceof FormData || isFormData),
       });
