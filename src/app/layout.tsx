@@ -123,7 +123,7 @@ export const metadata: Metadata = {
   },
 
 verification: {
-  google: 'AbCdEfGhIjKlMnOp123456',
+  google: 'OBfwwySFJO8D0TVOYh2oX4oc0wT9lX4K9kkOLKzBiIU',
 },
 };
 
