@@ -37,7 +37,7 @@ export const metadata: Metadata = {
     'Mohamed ALnawjha',
     'Nawjha Tech',
     'مهندس برمجيات',
-    'Full-Stack JavaScript Engineer'
+    'Full-Stack JavaScript Engineer',
     'React Developer',
     'Next.js Developer',
     'Node.js Developer',
