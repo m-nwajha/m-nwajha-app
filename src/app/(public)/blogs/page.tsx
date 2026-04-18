@@ -2,9 +2,39 @@ import BlogsPage from '@/components/pages/BlogsPage';
 import connectDB from '@/config/mongodb';
 import Blog from '@/server/models/Blog';
 
+const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'http://localhost:3000';
+
 export const metadata = {
-    title: 'المقالات | Nawjha Tech',
-    description: 'مدونة Nawjha Tech - اكتشف أحدث المقالات والدروس التعليمية في مجال البرمجة والتصميم',
+    title: 'المقالات التقنية',
+    description:
+        'مدونة Nawjha Tech بقلم Mohamed ALnawjha — أحدث المقالات والدروس التعليمية في عالم البرمجة: JavaScript، TypeScript، React، Next.js، Node.js، MongoDB، والتطوير الكامل Full-Stack.',
+    keywords: [
+        'مقالات برمجة',
+        'Mohamed ALnawjha blog',
+        'Nawjha Tech blog',
+        'دروس JavaScript',
+        'Next.js مقالات',
+        'React تعليم',
+        'Node.js شرح',
+        'مدونة تقنية عربية',
+        'تطوير ويب',
+        'TypeScript tutorial',
+    ],
+    alternates: {
+        canonical: `${BASE_URL}/blogs`,
+    },
+    openGraph: {
+        title: 'المقالات التقنية | Nawjha Tech',
+        description:
+            'أحدث المقالات والدروس في البرمجة وتطوير الويب — JavaScript، React، Next.js، Node.js وأكثر.',
+        url: `${BASE_URL}/blogs`,
+        type: 'website',
+    },
+    twitter: {
+        card: 'summary_large_image',
+        title: 'المقالات التقنية | Nawjha Tech',
+        description: 'أحدث المقالات والدروس في البرمجة وتطوير الويب.',
+    },
 };
 
 const PAGE_SIZE = 6;

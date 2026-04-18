@@ -5,6 +5,10 @@ import Contact from '@/server/models/Contact';
 import Portfolio from '@/server/models/Portfolio';
 import Testimonial from '@/server/models/Testimonial';
 
+export const metadata = {
+    title: 'نظرة عامة | لوحة التحكم',
+};
+
 async function getStats() {
     try {
         await connectDB();

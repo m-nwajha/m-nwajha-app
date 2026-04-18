@@ -2,7 +2,6 @@ import LoginForm from '@/components/organisms/LoginForm';
 
 export const metadata = {
     title: 'تسجيل الدخول | لوحة التحكم',
-    description: 'تسجيل الدخول للوصول إلى لوحة تحكم موقع نوجه تك',
 };
 
 export default function LoginPage() {

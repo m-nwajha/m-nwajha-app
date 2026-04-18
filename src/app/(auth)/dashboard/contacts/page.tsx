@@ -3,6 +3,10 @@ import Contact from '@/server/models/Contact';
 import ContactsManager from '@/components/organisms/ContactsManager';
 import DashboardHero from '@/components/molecules/DashboardHero';
 
+export const metadata = {
+    title: 'رسائل التواصل | لوحة التحكم',
+};
+
 async function getContactsData() {
     try {
         await connectDB();

@@ -68,7 +68,7 @@ const DashboardTestimonialForm: React.FC<TestimonialFormProps> = ({ testimonial,
             if (testimonial?._id) {
                 res = await update(data, testimonial._id);
             } else {
-                res = await post(data, true);
+                res = await post(data, undefined, true);
             }
 
             if (res && res.success) {

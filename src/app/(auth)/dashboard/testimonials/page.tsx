@@ -5,6 +5,10 @@ import { Container, Typography, Box } from '@/components/ui';
 
 import DashboardHero from '@/components/molecules/DashboardHero';
 
+export const metadata = {
+    title: 'أراء العملاء | لوحة التحكم',
+};
+
 async function getTestimonialsData() {
     try {
         await connectDB();

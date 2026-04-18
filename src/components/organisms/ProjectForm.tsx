@@ -111,7 +111,7 @@ const ProjectForm: React.FC<ProjectFormProps> = ({ project, onClose, onSuccess }
             if (isEdit) {
                 result = await update(data, project._id);
             } else {
-                result = await post(data, true);
+                result = await post(data, undefined, true);
             }
 
             if (result && result.success) {

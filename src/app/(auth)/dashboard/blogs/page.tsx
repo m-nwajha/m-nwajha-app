@@ -3,6 +3,10 @@ import Blog from '@/server/models/Blog';
 import BlogsManager from '@/components/organisms/BlogsManager';
 import DashboardHero from '@/components/molecules/DashboardHero';
 
+export const metadata = {
+    title: 'إدارة المدونة | لوحة التحكم',
+};
+
 async function getBlogsData() {
     try {
         await connectDB();

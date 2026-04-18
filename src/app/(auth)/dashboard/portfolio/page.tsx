@@ -5,6 +5,10 @@ import PortfolioManager from '@/components/organisms/PortfolioManager';
 
 import DashboardHero from '@/components/molecules/DashboardHero';
 
+export const metadata = {
+    title: 'إدارة الأعمال | لوحة التحكم',
+};
+
 async function getPortfolioData() {
     try {
         await connectDB();
