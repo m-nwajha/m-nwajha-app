@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import {
   Input,
   TextArea,
@@ -13,11 +13,12 @@ import { CN } from '@/utils/className';
 import useAPI from '@/hooks/useAPI';
 import { motion } from 'framer-motion';
 import { SMILEYS } from '@/constants/smileys';
-import { ADD_TESTIMONIAL } from '@/constants/testimonials';
+import ReCAPTCHA from 'react-google-recaptcha';
 
 const TestimonialForm = () => {
   const { showToast } = useToast();
   const { post, isLoading } = useAPI('/api/testimonials');
+  const recaptchaRef = useRef<ReCAPTCHA>(null);
   const [rating, setRating] = useState(5);
   const [formData, setFormData] = useState<any>({
     name: '',
@@ -43,6 +44,14 @@ const TestimonialForm = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    const token = recaptchaRef.current?.getValue();
+
+    if (!token) {
+      showToast('الرجاء التحقق من أنك لست روبوت.', 'error');
+      return;
+    }
+
     try {
       const data = new FormData();
       data.append('name', formData.name);
@@ -50,11 +59,12 @@ const TestimonialForm = () => {
       data.append('company', formData.company);
       data.append('content', formData.content);
       data.append('rating', rating.toString());
+      data.append('captcha', token);
       if (imageFile) {
         data.append('avatar', imageFile);
       }
 
-      const res = await post(data, true);
+      const res = await post(data, undefined, true);
       if (res && res.success) {
         showToast(
           'تم إرسال تقييمك بنجاح! سيتم مراجعته وظهوره قريباً.',
@@ -64,6 +74,7 @@ const TestimonialForm = () => {
         setRating(5);
         setImageFile(null);
         setImagePreview('');
+        recaptchaRef.current?.reset();
       }
     } catch (error) {
       showToast('فشل إرسال التقييم، يرجى المحاولة مرة أخرى.', 'error');
@@ -198,15 +209,25 @@ const TestimonialForm = () => {
           />
         </div>
 
-        <Button
-          type='submit'
-          disabled={isLoading}
-          className='w-full h-14 rounded-2xl bg-secondary text-white font-bold text-lg hover:scale-[1.02] active:scale-95 transition-all shadow-lg shadow-secondary/20'>
-          {isLoading ? 'جاري الإرسال...' : 'إرسال التقييم الآن 🚀'}
-        </Button>
+        <div className="flex flex-col items-center gap-6">
+          <ReCAPTCHA
+            ref={recaptchaRef}
+            sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || ''}
+            theme="dark"
+            hl="ar"
+          />
+
+          <Button
+            type='submit'
+            disabled={isLoading}
+            className='w-full h-14 rounded-2xl bg-secondary text-white font-bold text-lg hover:scale-[1.02] active:scale-95 transition-all shadow-lg shadow-secondary/20'>
+            {isLoading ? 'جاري الإرسال...' : 'إرسال التقييم الآن 🚀'}
+          </Button>
+        </div>
       </form>
     </motion.div>
   );
 };
 
 export default TestimonialForm;
+

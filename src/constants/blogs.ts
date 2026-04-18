@@ -2,10 +2,10 @@ export const BLOGS_DATA = {
     title: { wordA: 'آخر', wordB: 'المقالات' },
     filters: [
         { id: '*', label: 'الكل', icon: 'bi-grid-3x3' },
-        { id: 'filter-web', label: 'تصميم الويب', icon: 'bi-window' },
-        { id: 'filter-mobile', label: 'تطبيقات الجوال', icon: 'bi-phone' },
-        { id: 'filter-branding', label: 'العلامة التجارية', icon: 'bi-award' },
-        { id: 'filter-ui', icon: 'bi-palette', label: 'واجهة المستخدم' },
+        { id: 'filter-web', label: 'البرمجة', icon: 'bi-code-slash' },
+        { id: 'filter-mobile', label: 'الذكاء الاصطناعي', icon: 'bi-stars' },
+        { id: 'filter-branding', label: 'أخبار رقمية', icon: 'bi-lightbulb' },
+        { id: 'filter-ui', icon: 'bi-palette', label: 'تجربة المستخدم' },
     ],
     items: [
         {

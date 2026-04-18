@@ -5,7 +5,7 @@ import { CN } from '@/utils/className';
 const WhatsappBtn = () => {
     return (
         <a
-            href='https://wa.me/201122222222'
+            href='https://wa.me/+972567634884'
             target='_blank'
             rel="noopener noreferrer"
             className={CN(

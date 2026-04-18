@@ -7,8 +7,8 @@ export const CONTACT_DATA = {
     infoDescription: 'يسعدني تواصلكم معي عبر المعلومات التالية:',
     location: {
         title: 'العنوان',
-        address1: 'Palestine',
-        address2: 'Palestine',
+        address1: 'Gaza, Palestine | 6th Oct City, Egypt',
+        address2: '',
         icon: 'bi-geo-alt',
     },
     phone: {

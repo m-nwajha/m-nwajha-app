@@ -76,7 +76,7 @@ const BlogForm: React.FC<BlogFormProps> = ({ blog, onClose, onSuccess }) => {
             if (isEdit) {
                 result = await patch(data, true, blog._id);
             } else {
-                result = await post(data, true);
+                result = await post(data, undefined, true);
             }
 
             if (result && result.success) {

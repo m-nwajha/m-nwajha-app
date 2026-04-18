@@ -133,7 +133,7 @@ const ProjectForm: React.FC<ProjectFormProps> = ({ project, onClose, onSuccess }
                 type="submit"
                 form="project-form"
                 disabled={isLoading}
-                className="rounded-xl px-12 bg-secondary text-white font-bold hover:scale-105 transition-all disabled:opacity-50 shadow-lg shadow-secondary/20"
+                className="rounded-xl bg-secondary text-white font-bold hover:scale-105 transition-all disabled:opacity-50 shadow-lg shadow-secondary/20"
             >
                 {isLoading ? 'جاري الحفظ...' : (isEdit ? 'حفظ التغييرات' : 'إضافة المشروع')}
             </Button>

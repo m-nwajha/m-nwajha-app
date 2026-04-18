@@ -1,25 +1,40 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { Box, Typography, Button, Input, TextArea, useToast } from '../ui';
 import { CONTACT_DATA } from '@/constants/contact';
 import useAPI from '@/hooks/useAPI';
 import { ENDPOINTS } from '@/constants/endpoints';
+import ReCAPTCHA from 'react-google-recaptcha';
 
 const ContactForm = () => {
     const { post, isLoading } = useAPI();
     const { showToast } = useToast();
+    const recaptchaRef = useRef<ReCAPTCHA>(null);
+
     const [formData, setFormData] = useState({
         name: '',
         email: '',
         subject: '',
         message: ''
     });
+
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
+
+        const token = recaptchaRef.current?.getValue();
+
+        if (!token) {
+            showToast('الرجاء التحقق من أنك لست روبوت.', 'error');
+            return;
+        }
+
         const web3formsBody = {
-            ...formData, access_key: process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY
+            ...formData,
+            access_key: process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY,
+            'g-recaptcha-response': token
         };
+
         try {
             await Promise.all([
                 post(web3formsBody, process.env.NEXT_PUBLIC_WEB3FORMS_API_URL),
@@ -27,13 +42,14 @@ const ContactForm = () => {
             ]);
             showToast('تم إرسال رسالتك بنجاح! سنقوم بالرد عليك قريباً.', 'success');
             setFormData({ name: '', email: '', subject: '', message: '' });
+            recaptchaRef.current?.reset();
         } catch (error) {
             showToast('عذراً، حدث خطأ ما أثناء إرسال الرسالة. يرجى المحاولة مرة أخرى.', 'error');
         }
     };
 
     return (
-        <Box className="lg:col-span-7 bg-primary border border-secondary/10 p-8 lg:p-12 rounded-2xl h-full shadow-lg">
+        <Box className="lg:col-span-12 bg-primary border border-secondary/10 p-8 lg:p-12 rounded-2xl h-full shadow-lg">
             <Typography color='secondary' variant="h3" size="h3" className="mb-4 font-bold">
                 {CONTACT_DATA.formTitle}
             </Typography>
@@ -73,7 +89,14 @@ const ContactForm = () => {
                     required
                 />
 
-                <div className="text-center">
+                <div className="flex flex-col items-center gap-6">
+                    <ReCAPTCHA
+                        ref={recaptchaRef}
+                        sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || ''}
+                        theme="dark"
+                        hl="ar"
+                    />
+
                     <Button
                         type="submit"
                         disabled={isLoading}
@@ -89,3 +112,4 @@ const ContactForm = () => {
 };
 
 export default ContactForm;
+
