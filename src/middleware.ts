@@ -8,8 +8,8 @@ export function middleware(request: NextRequest) {
 
     // 1. API Protection (Must be first for API calls)
     if (pathname.startsWith('/api')) {
-        // Skip API key check for setup-admin and auth routes if needed
-        if (pathname === '/api/setup-admin') {
+        // Skip API key check for auth routes
+        if (pathname.startsWith('/api/auth')) {
             return NextResponse.next();
         }
         if (apiKey !== process.env.NEXT_PUBLIC_API_KEY) {
