@@ -28,7 +28,7 @@ export const metadata: Metadata = {
 
   /* ── Basic ── */
   title: {
-    default: 'Nawjha Tech | Mohamed ALnawjha - Full-Stack Developer',
+    default: 'Mohamed ALnawjha - Full-Stack JavaScript Engineer',
     template: '%s | Nawjha Tech',
   },
   description:
@@ -37,7 +37,7 @@ export const metadata: Metadata = {
     'Mohamed ALnawjha',
     'Nawjha Tech',
     'مهندس برمجيات',
-    'Full-Stack Developer',
+    'Full-Stack JavaScript Engineer'
     'React Developer',
     'Next.js Developer',
     'Node.js Developer',
