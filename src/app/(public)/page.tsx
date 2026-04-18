@@ -8,7 +8,7 @@ import Blog from '@/server/models/Blog';
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'http://localhost:3000';
 
 export const metadata: Metadata = {
-  title: 'Nawjha Tech | Mohamed ALnawjha - Full-Stack Developer',
+  title: 'Nawjha Tech | Mohamed ALnawjha - Full-Stack JavaScript Engineer',
   description:
     'Mohamed ALnawjha — Full-Stack JavaScript Engineer with 3+ years of experience in JavaScript & TypeScript. I build landing pages, portfolio sites, and full e-commerce stores using React, Next.js, Node.js & MongoDB.',
   keywords: [
