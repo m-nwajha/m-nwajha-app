@@ -122,11 +122,9 @@ export const metadata: Metadata = {
     apple: '/assets/images/logo.png',
   },
 
-  /* ── Verification (add keys when available) ── */
-  // verification: {
-  //   google: 'YOUR_GOOGLE_SEARCH_CONSOLE_KEY',
-  //   yandex: 'YOUR_YANDEX_KEY',
-  // },
+verification: {
+  google: 'AbCdEfGhIjKlMnOp123456',
+},
 };
 
 export default function RootLayout({
