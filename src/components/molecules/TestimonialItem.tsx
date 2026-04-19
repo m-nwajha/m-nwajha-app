@@ -16,7 +16,7 @@ interface TestimonialItemProps {
 
 const TestimonialItem: FC<TestimonialItemProps> = ({ name, role, content, avatar, company, rating, verified }) => {
     return (
-        <Box className='h-full flex flex-col bg-dark/40 backdrop-blur-sm border border-secondary/10 rounded-3xl p-8 relative overflow-hidden transition-all duration-300 hover:border-secondary/50 group before:content-[""] before:absolute before:top-0 before:left-0 before:right-0 before:h-1 before:bg-linear-to-r before:from-secondary before:to-sky-400 before:rounded-t-3xl'>
+        <Box className='h-full flex flex-col bg-dark/40 backdrop-blur-sm border border-secondary/10 rounded-3xl p-8 relative overflow-hidden transition-all duration-300 hover:border-secondary/50 group before:content-[""] before:absolute before:top-0 before:left-0 before:right-0 before:h-1 before:bg-linear-to-r before:from-secondary before:to-sky-400 before:rounded-t-3xl '>
 
             {/* Header */}
             <div className='flex items-start gap-4 mb-6'>
@@ -56,7 +56,7 @@ const TestimonialItem: FC<TestimonialItemProps> = ({ name, role, content, avatar
                 <div className='absolute -top-9 left-1 w-12 h-12 bg-linear-to-br from-secondary to-sky-400 rounded-full flex items-center justify-center opacity-80 group-hover:opacity-100 transition-opacity'>
                     <i className='bi bi-quote text-white text-xl'></i>
                 </div>
-                <Typography variant='p' size='h6' color='light' className='leading-relaxed font-medium text-justify relative z-10 pt-2'>
+                <Typography variant='p' size='h6' color='light' className='leading-relaxed font-medium text-justify relative z-10 pt-2 line-clamp-3'>
                     {content}
                 </Typography>
             </div>

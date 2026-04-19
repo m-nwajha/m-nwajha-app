@@ -1,5 +1,5 @@
-'use client';
 import { useReducer, useCallback } from 'react';
+import { useRouter } from 'next/navigation';
 import axios from 'axios';
 import { FAILURE, INIT, SUCCESS } from '@/constants/actionTypeAPI';
 import type { State, Action } from '@/@types/apiHook';
@@ -35,6 +35,7 @@ const initialState: State = {
 };
 
 const useAPI = (url?: string, apiKey?: string) => {
+  const router = useRouter();
   const [state, dispatch] = useReducer(reducer, initialState);
 
   const getHeaders = useCallback((isFormData = false) => {
@@ -70,6 +71,7 @@ const useAPI = (url?: string, apiKey?: string) => {
         headers: getHeaders(body instanceof FormData || isFormData),
       });
       dispatch({ type: SUCCESS, payload: response.data });
+      router.refresh();
       return response.data;
     } catch (error) {
       dispatch({ type: FAILURE, payload: handleError(error, 'فشل الارسال') });
@@ -84,6 +86,7 @@ const useAPI = (url?: string, apiKey?: string) => {
         headers: getHeaders(body instanceof FormData),
       });
       dispatch({ type: SUCCESS, payload: response.data });
+      router.refresh();
       return response.data;
     } catch (error) {
       dispatch({ type: FAILURE, payload: handleError(error, 'فشل التعديل') });
@@ -98,6 +101,7 @@ const useAPI = (url?: string, apiKey?: string) => {
         headers: getHeaders(),
       });
       dispatch({ type: SUCCESS, payload: response.data });
+      router.refresh();
     } catch (error) {
       dispatch({ type: FAILURE, payload: handleError(error, 'فشل الحذف') });
     }
@@ -111,6 +115,7 @@ const useAPI = (url?: string, apiKey?: string) => {
         headers: getHeaders(body instanceof FormData || isFormData),
       });
       dispatch({ type: SUCCESS, payload: response.data });
+      router.refresh();
       return response.data;
     } catch (error) {
       dispatch({ type: FAILURE, payload: handleError(error, 'فشل التعديل') });

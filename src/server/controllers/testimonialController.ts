@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { revalidatePath } from 'next/cache';
 import Testimonial from '../models/Testimonial';
 import { statusCode } from '@/constants/server/statusCode';
 import { uploadToCloudinary } from '../utils/cloudinaryUpload';
@@ -47,6 +48,8 @@ export const createTestimonial = async (req: NextRequest) => {
         }
 
         const newItem = await Testimonial.create(data);
+        revalidatePath('/');
+        revalidatePath('/dashboard/testimonials');
         return NextResponse.json({ success: true, data: newItem }, { status: 201 });
     } catch (error: any) {
         console.error('Error creating testimonial:', error);
@@ -93,6 +96,8 @@ export const updateTestimonial = async (id: string, req: NextRequest) => {
             return NextResponse.json({ success: false, error: 'Testimonial not found' }, { status: 404 });
         }
 
+        revalidatePath('/');
+        revalidatePath('/dashboard/testimonials');
         return NextResponse.json({ success: true, data: item });
     } catch (error: any) {
         console.error('Error updating testimonial:', error);
@@ -109,6 +114,8 @@ export const deleteTestimonial = async (id: string) => {
         if (!item) {
             return NextResponse.json({ success: false, error: 'Testimonial not found' }, { status: 404 });
         }
+        revalidatePath('/');
+        revalidatePath('/dashboard/testimonials');
         return NextResponse.json({ success: true, data: {} });
     } catch (error: any) {
         console.error('Error deleting testimonial:', error);
@@ -126,6 +133,8 @@ export const toggleTestimonialVerification = async (id: string) => {
         testimonial.verified = !testimonial.verified;
         await testimonial.save();
 
+        revalidatePath('/');
+        revalidatePath('/dashboard/testimonials');
         return NextResponse.json({ success: true, data: testimonial });
     } catch (error: any) {
         return NextResponse.json({ success: false, error: error.message }, { status: 500 });

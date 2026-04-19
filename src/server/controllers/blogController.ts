@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { revalidatePath } from 'next/cache';
 import Blog from '../models/Blog';
 import connectDB from '@/config/mongodb';
 import { uploadToCloudinary } from '../utils/cloudinaryUpload';
@@ -107,6 +108,9 @@ export const createBlog = async (req: NextRequest) => {
         }
 
         const newItem = await Blog.create(data);
+        revalidatePath('/');
+        revalidatePath('/blogs');
+        revalidatePath('/dashboard/blogs');
         return NextResponse.json({ success: true, data: newItem }, { status: 201 });
     } catch (error: any) {
         console.error('Error creating blog:', error);
@@ -158,6 +162,10 @@ export const updateBlog = async (id: string, req: NextRequest) => {
             return NextResponse.json({ success: false, error: 'Blog not found' }, { status: 404 });
         }
 
+        revalidatePath('/');
+        revalidatePath('/blogs');
+        revalidatePath(`/blogs/${id}`);
+        revalidatePath('/dashboard/blogs');
         return NextResponse.json({ success: true, data: item });
     } catch (error: any) {
         console.error('Error updating blog:', error);
@@ -175,6 +183,9 @@ export const deleteBlog = async (id: string) => {
         if (!item) {
             return NextResponse.json({ success: false, error: 'Blog not found' }, { status: 404 });
         }
+        revalidatePath('/');
+        revalidatePath('/blogs');
+        revalidatePath('/dashboard/blogs');
         return NextResponse.json({ success: true, data: {} });
     } catch (error: any) {
         console.error('Error deleting blog:', error);

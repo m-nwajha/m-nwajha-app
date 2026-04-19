@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+export const dynamic = 'force-dynamic';
 import HomePage from '@/components/pages/HomePage';
 import connectDB from '@/config/mongodb';
 import Portfolio from '@/server/models/Portfolio';

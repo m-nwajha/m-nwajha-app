@@ -66,7 +66,7 @@ const Testimonials: FC<TestimonialsProps> = ({ testimonials = [] }) => {
                                     spaceBetween: 40,
                                 },
                             }}
-                            className='!pb-16'
+                            className='!pb-16 items-stretch'
                         >
                             {displayItems.map((testimonial, idx) => (
                                 <SwiperSlide key={testimonial._id || testimonial.id || idx} className='h-auto'>
@@ -110,6 +110,12 @@ const Testimonials: FC<TestimonialsProps> = ({ testimonials = [] }) => {
             </Container>
 
             <style jsx global>{`
+                .testimonials-slider .swiper-wrapper {
+                    align-items: stretch;
+                }
+                .testimonials-slider .swiper-slide {
+                    height: auto !important;
+                }
                 .testimonials-slider .swiper-pagination-bullet {
                     width: 12px;
                     height: 12px;

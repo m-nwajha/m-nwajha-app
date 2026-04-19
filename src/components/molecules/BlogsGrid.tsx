@@ -29,7 +29,7 @@ const BlogsGrid = ({ initialItems = [] }: { initialItems?: any[]; }) => {
             <Grid sm={1} md={2} lg={3} gap={6} className='mb-12'>
                 {displayItems.map((blog, index) => (
                     <motion.div
-                        key={blog._id || blog.id}
+                        key={blog._id || blog.id || index}
                         custom={index}
                         initial="hidden"
                         whileInView="visible"
@@ -44,7 +44,7 @@ const BlogsGrid = ({ initialItems = [] }: { initialItems?: any[]; }) => {
                             rating={blog.rating}
                             image={blog.image}
                             tag={blog.tag}
-                            detailsLink={String(blog._id)}
+                            detailsLink={String(blog._id || blog.id)}
                         />
                     </motion.div>
                 ))}

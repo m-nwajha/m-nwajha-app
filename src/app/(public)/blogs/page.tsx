@@ -1,4 +1,5 @@
 import BlogsPage from '@/components/pages/BlogsPage';
+export const dynamic = 'force-dynamic';
 import connectDB from '@/config/mongodb';
 import Blog from '@/server/models/Blog';
 

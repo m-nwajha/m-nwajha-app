@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { revalidatePath } from 'next/cache';
 import Contact from '../models/Contact';
 import connectDB from '@/config/mongodb';
 
@@ -21,6 +22,7 @@ export const createContact = async (req: NextRequest) => {
         await connectDB();
         const data = await req.json();
         const newItem = await Contact.create(data);
+        revalidatePath('/dashboard/contacts');
         return NextResponse.json({ success: true, data: newItem }, { status: 201 });
     } catch (error: any) {
         console.error('Error creating contact:', error);
@@ -39,6 +41,7 @@ export const updateContactStatus = async (id: string, req: NextRequest) => {
         if (!item) {
             return NextResponse.json({ success: false, error: 'Contact not found' }, { status: 404 });
         }
+        revalidatePath('/dashboard/contacts');
         return NextResponse.json({ success: true, data: item });
     } catch (error: any) {
         return NextResponse.json({ success: false, error: 'Server Error' }, { status: 500 });
@@ -52,6 +55,7 @@ export const deleteContact = async (id: string) => {
         if (!item) {
             return NextResponse.json({ success: false, error: 'Contact not found' }, { status: 404 });
         }
+        revalidatePath('/dashboard/contacts');
         return NextResponse.json({ success: true, data: {} });
     } catch (error: any) {
         return NextResponse.json({ success: false, error: 'Server Error' }, { status: 500 });

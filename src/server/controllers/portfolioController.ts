@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { revalidatePath } from 'next/cache';
 import Portfolio from '../models/Portfolio';
 import { statusCode } from '@/constants/server/statusCode';
 
@@ -101,6 +102,8 @@ export const createPortfolioItem = async (req: NextRequest) => {
         console.log('💾 Saving to MongoDB...', projectData.title);
         const newItem = await Portfolio.create(projectData);
         console.log('✨ Portfolio item created successfully');
+        revalidatePath('/');
+        revalidatePath('/dashboard/portfolio');
         return NextResponse.json({ success: true, data: newItem }, { status: 201 });
     } catch (error: any) {
         console.error('❌ SERVER ERROR (createPortfolioItem):', error);
@@ -176,6 +179,9 @@ export const updatePortfolioRating = async (id: string, req: NextRequest) => {
             );
         }
 
+        revalidatePath('/');
+        revalidatePath(`/portfolio/${id}`);
+        revalidatePath('/dashboard/portfolio');
         return NextResponse.json({ success: true, data: item });
     } catch (error: any) {
         console.error('Error updating portfolio rating:', error);
@@ -261,6 +267,9 @@ export const updatePortfolioItem = async (id: string, req: NextRequest) => {
             );
         }
 
+        revalidatePath('/');
+        revalidatePath(`/portfolio/${id}`);
+        revalidatePath('/dashboard/portfolio');
         return NextResponse.json({ success: true, data: item });
     } catch (error: any) {
         console.error('Error updating portfolio item:', error);
@@ -280,6 +289,8 @@ export const deletePortfolioItem = async (id: string) => {
                 { status: 404 }
             );
         }
+        revalidatePath('/');
+        revalidatePath('/dashboard/portfolio');
         return NextResponse.json({ success: true, data: {} });
     } catch (error: any) {
         console.error('Error deleting portfolio item:', error);
