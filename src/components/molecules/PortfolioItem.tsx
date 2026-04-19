@@ -51,7 +51,7 @@ const PortfolioItem: FC<PortfolioItemProps> = ({
                         variant="h3"
                         color='white'
                         size="h5"
-                        className="text-shadow-sm text-shadow-primary/10 font-semibold mb-5"
+                        className="text-shadow-sm text-shadow-primary/10 font-semibold mb-5 line-clamp-1"
                     >
                         {title}
                     </Typography>

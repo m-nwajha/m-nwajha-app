@@ -28,11 +28,6 @@ const BlogItem: FC<BlogItemProps> = ({
     link = '#',
     detailsLink
 }) => {
-    const words = description.split(/\s+/);
-    const truncatedDescription = words.length > 30
-        ? words.slice(0, 30).join(' ') + '...'
-        : description;
-
     return (
         <article className="group bg-linear-to-b from-white/3 to-white/1 border border-white/5 rounded-3xl overflow-hidden transition-all duration-400 hover:-translate-y-2 hover:shadow-2xl hover:shadow-secondary/10 hover:border-secondary/20" >
             <BlogThumbnail
@@ -48,12 +43,14 @@ const BlogItem: FC<BlogItemProps> = ({
                     <BlogRating rating={rating} />
                 </div>
 
-                <Typography variant="h3" size="h5" color="white" className="font-bold mb-3 leading-tight transition-colors duration-300 group-hover:text-secondary">
-                    {title}
+                <Typography variant="h3" size="h5" color="white" className="font-bold mb-3 leading-tight transition-colors duration-300 group-hover:text-secondary line-clamp-1">
+                    <Link href={`/blogs/${detailsLink}`}>
+                        {title}
+                    </Link>
                 </Typography>
 
-                <Typography variant="p" size="h6" color="light" className="mb-6 opacity-70 line-clamp-2 leading-relaxed h-12">
-                    {truncatedDescription}
+                <Typography variant="p" size="h6" color="light" className="mb-6 opacity-70 line-clamp-2 leading-relaxed h-12 line-clamp-3">
+                    {description}
                 </Typography>
 
                 <div className="flex flex-wrap gap-2">

@@ -66,7 +66,7 @@ const Testimonials: FC<TestimonialsProps> = ({ testimonials = [] }) => {
                                     spaceBetween: 40,
                                 },
                             }}
-                            className='!pb-16 items-stretch'
+                            className='!pb-8 items-stretch'
                         >
                             {displayItems.map((testimonial, idx) => (
                                 <SwiperSlide key={testimonial._id || testimonial.id || idx} className='h-auto'>
@@ -76,7 +76,7 @@ const Testimonials: FC<TestimonialsProps> = ({ testimonials = [] }) => {
                         </Swiper>
 
 
-                        <div className='swiper-pagination-custom flex justify-center gap-3 mt-2'></div>
+                        <div className='swiper-pagination-custom flex justify-center gap-3'></div>
                         {/* Custom Pagination */}
                         <Container variant='xl'>
                             <div className="flex flex-col md:flex-row items-center justify-between gap-8 mt-12 bg-linear-to-r from-secondary/10 to-secondary/30 p-8 rounded-3xl border border-secondary/20 relative overflow-hidden group">
@@ -96,7 +96,7 @@ const Testimonials: FC<TestimonialsProps> = ({ testimonials = [] }) => {
                                     <Link href="/testimonials/add">
                                         <Button
                                             variant="bg"
-                                            className="h-14 px-10 rounded-2xl bg-secondary text-white font-bold hover:scale-105 transition-all shadow-xl shadow-secondary/20 flex items-center gap-3"
+                                            className="h-14 px-5 md:px-10 rounded-2xl bg-secondary text-white font-bold hover:scale-105 transition-all shadow-xl shadow-secondary/20 flex items-center gap-3"
                                         >
                                             أضف تقييمك الآن
                                             <i className="bi bi-chat-heart text-xl"></i>
