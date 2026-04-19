@@ -29,17 +29,8 @@ const ContactForm = () => {
             return;
         }
 
-        const web3formsBody = {
-            ...formData,
-            access_key: process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY,
-            'g-recaptcha-response': token
-        };
-
         try {
-            await Promise.all([
-                post(web3formsBody, process.env.NEXT_PUBLIC_WEB3FORMS_API_URL),
-                post(formData, ENDPOINTS.contacts)
-            ]);
+            await post(formData, ENDPOINTS.contacts);
             showToast('تم إرسال رسالتك بنجاح! سنقوم بالرد عليك قريباً.', 'success');
             setFormData({ name: '', email: '', subject: '', message: '' });
             recaptchaRef.current?.reset();
