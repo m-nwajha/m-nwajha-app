@@ -91,6 +91,13 @@ const BlogForm: React.FC<BlogFormProps> = ({ blog, onClose, onSuccess }) => {
         }
     };
 
+    const insertSnippet = (type: 'code' | 'terminal') => {
+        const snippet = type === 'code'
+            ? `\n<pre data-title="Code snippet"><code>\n// اكتب الكود هنا\n</code></pre>\n`
+            : `\n<pre data-title="Terminal"><code>\n$ اكتب أمر التيرمنال هنا\n</code></pre>\n`;
+        setFormData(prev => ({ ...prev, content: prev.content + snippet }));
+    };
+
     const footer = (
         <div className="flex justify-end gap-4">
             <Button type="button" onClick={onClose} variant="outline" className="rounded-xl px-8">إلغاء</Button>
@@ -215,7 +222,25 @@ const BlogForm: React.FC<BlogFormProps> = ({ blog, onClose, onSuccess }) => {
                 </div>
 
                 <div>
-                    <label className="block text-sm font-medium text-light/60 mb-2">محتوى المقال كاملاً</label>
+                    <div className="flex justify-between items-center mb-2">
+                        <label className="block text-sm font-medium text-light/60">محتوى المقال كاملاً</label>
+                        <div className="flex gap-2">
+                            <button
+                                type="button"
+                                onClick={() => insertSnippet('code')}
+                                className="px-3 py-1 text-xs bg-white/5 hover:bg-white/10 text-light rounded-lg border border-white/10 transition-colors flex items-center gap-2"
+                            >
+                                <i className="bi bi-code-slash"></i> إضافة كود
+                            </button>
+                            <button
+                                type="button"
+                                onClick={() => insertSnippet('terminal')}
+                                className="px-3 py-1 text-xs bg-white/5 hover:bg-white/10 text-light rounded-lg border border-white/10 transition-colors flex items-center gap-2"
+                            >
+                                <i className="bi bi-terminal"></i> أمر تيرمنال
+                            </button>
+                        </div>
+                    </div>
                     <TextArea
                         value={formData.content}
                         onChange={(e) => setFormData({ ...formData, content: e.target.value })}

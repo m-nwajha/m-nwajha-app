@@ -47,8 +47,77 @@ const BlogDetailsContent: FC<BlogDetailsContentProps> = ({ blog }) => {
     useEffect(() => {
         if (typeof window !== 'undefined') {
             setPageUrl(window.location.href);
+
+            // Add copy buttons to code blocks
+            const initCopyButtons = () => {
+                const preElements = document.querySelectorAll('.blog-main-content pre');
+                
+                preElements.forEach((pre) => {
+                    if (pre.parentElement?.classList.contains('code-block-wrapper')) return; // Already processed
+
+                    // Create wrapper
+                    const wrapper = document.createElement('div');
+                    wrapper.className = 'code-block-wrapper';
+                    wrapper.style.position = 'relative';
+                    wrapper.style.width = '100%';
+                    wrapper.style.direction = 'ltr';
+                    wrapper.style.marginBottom = '2rem';
+                    wrapper.style.marginTop = '2rem';
+                    
+                    // Remove margins from pre since wrapper handles it
+                    (pre as HTMLElement).style.marginTop = '0';
+                    (pre as HTMLElement).style.marginBottom = '0';
+                    
+                    // Wrap the pre element
+                    pre.parentNode?.insertBefore(wrapper, pre);
+                    wrapper.appendChild(pre);
+
+                    // Create the button
+                    const button = document.createElement('button');
+                    button.className = 'copy-button';
+                    button.style.position = 'absolute';
+                    button.style.top = '12px';
+                    button.style.right = '12px';
+                    button.style.backgroundColor = 'rgba(255,255,255,0.1)';
+                    button.style.border = '1px solid rgba(255,255,255,0.2)';
+                    button.style.color = '#fff';
+                    button.style.padding = '4px 8px';
+                    button.style.borderRadius = '6px';
+                    button.style.fontSize = '12px';
+                    button.style.cursor = 'pointer';
+                    button.style.zIndex = '10';
+                    button.style.display = 'flex';
+                    button.style.alignItems = 'center';
+                    button.style.gap = '6px';
+                    
+                    button.innerHTML = '<i class="bi bi-clipboard"></i> Copy';
+
+                    button.onmouseover = () => { button.style.backgroundColor = 'rgba(255,255,255,0.2)'; };
+                    button.onmouseout = () => { button.style.backgroundColor = 'rgba(255,255,255,0.1)'; };
+
+                    button.onclick = () => {
+                        const code = pre.querySelector('code');
+                        const textToCopy = code ? code.innerText : (pre as HTMLElement).innerText;
+                        navigator.clipboard.writeText(textToCopy).then(() => {
+                            button.innerHTML = '<i class="bi bi-check2" style="color:#4ade80"></i> Copied!';
+                            button.style.backgroundColor = 'rgba(74, 222, 128, 0.2)';
+                            button.style.borderColor = 'rgba(74, 222, 128, 0.4)';
+                            setTimeout(() => {
+                                button.innerHTML = '<i class="bi bi-clipboard"></i> Copy';
+                                button.style.backgroundColor = 'rgba(255,255,255,0.1)';
+                                button.style.borderColor = 'rgba(255,255,255,0.2)';
+                            }, 2000);
+                        });
+                    };
+
+                    wrapper.appendChild(button);
+                });
+            };
+
+            // Run slightly after mount to ensure dangerouslySetInnerHTML has rendered
+            setTimeout(initCopyButtons, 100);
         }
-    }, []);
+    }, [blog.content]);
 
     const displayDate = blog.createdAt
         ? new Date(blog.createdAt).toLocaleDateString('ar-EG', { year: 'numeric', month: 'long', day: 'numeric' })

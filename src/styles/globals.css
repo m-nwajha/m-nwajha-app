@@ -77,3 +77,75 @@ body {
   font-family: var(--font-en);
 }
 
+/* -------------------------
+   Blog Code Blocks Styling (IDE/Terminal Look)
+-------------------------- */
+.blog-main-content pre {
+  background-color: #0d1117;
+  color: #c9d1d9;
+  padding: 3rem 1.5rem 1.5rem 1.5rem;
+  border-radius: 0.75rem;
+  overflow-x: auto;
+  font-family: var(--font-en), monospace;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  position: relative;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  direction: ltr; /* Always LTR for code snippets */
+  text-align: left;
+}
+
+/* MacOS like window buttons */
+.blog-main-content pre::before {
+  content: "";
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #ff5f56;
+  box-shadow: 20px 0 0 #ffbd2e, 40px 0 0 #27c93f;
+}
+
+/* Window title */
+.blog-main-content pre::after {
+  content: attr(data-title);
+  position: absolute;
+  top: 0.9rem;
+  left: 0;
+  right: 0;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.4);
+  font-size: 0.8rem;
+  font-family: var(--font-en), sans-serif;
+  pointer-events: none;
+}
+
+.blog-main-content pre:not([data-title])::after {
+  content: "Code snippet";
+}
+
+/* Inline code style */
+.blog-main-content code {
+  font-family: var(--font-en), monospace;
+  background-color: rgba(255, 255, 255, 0.1);
+  padding: 0.2rem 0.4rem;
+  border-radius: 0.375rem;
+  font-size: 0.875em;
+  color: var(--secondary);
+  direction: ltr;
+  display: inline-block;
+}
+
+/* Reset inline styles when code is inside pre */
+.blog-main-content pre code {
+  background-color: transparent;
+  padding: 0;
+  border-radius: 0;
+  color: inherit;
+  display: block;
+}
