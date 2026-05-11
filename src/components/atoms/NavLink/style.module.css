@@ -62,28 +62,28 @@
     color: var(--color-white);
 }
 
-.nav_link:hover,
 .active,
-.active:focus,
-.nav_li:hover>a {
+.active:focus {
     color: var(--color-white);
     background: #00494d;
 }
 
-.nav_link:hover span,
 .navbar .active span,
-.navbar .active:focus span,
-.nav_li:hover>a span {
+.navbar .active:focus span {
     color: var(--color-white);
 }
 
-.nav_link:hover,
-.nav_li:hover>a {
-    width: 100%;
-    color: var(--color-white);
-}
+@media (hover: hover) {
+    .nav_link:hover,
+    .nav_li:hover>a {
+        color: var(--color-white);
+        background: #00494d;
+        width: 100%;
+    }
 
-.nav_link:hover span,
-.nav_li:hover>a span {
-    display: block;
+    .nav_link:hover span,
+    .nav_li:hover>a span {
+        color: var(--color-white);
+        display: block;
+    }
 }

@@ -85,7 +85,7 @@ const TestimonialForm = () => {
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      className='max-w-2xl mx-auto bg-white/5 border border-white/10 p-8 rounded-3xl shadow-2xl backdrop-blur-sm'>
+      className='max-w-2xl mx-auto bg-white/5 border border-white/10 px-4 py-8 md:px-8 rounded-3xl shadow-2xl backdrop-blur-sm'>
       <Typography
         color='secondary'
         variant='h3'

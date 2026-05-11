@@ -51,7 +51,7 @@ const BlogDetailsContent: FC<BlogDetailsContentProps> = ({ blog }) => {
             // Add copy buttons to code blocks
             const initCopyButtons = () => {
                 const preElements = document.querySelectorAll('.blog-main-content pre');
-                
+
                 preElements.forEach((pre) => {
                     if (pre.parentElement?.classList.contains('code-block-wrapper')) return; // Already processed
 
@@ -63,11 +63,11 @@ const BlogDetailsContent: FC<BlogDetailsContentProps> = ({ blog }) => {
                     wrapper.style.direction = 'ltr';
                     wrapper.style.marginBottom = '2rem';
                     wrapper.style.marginTop = '2rem';
-                    
+
                     // Remove margins from pre since wrapper handles it
                     (pre as HTMLElement).style.marginTop = '0';
                     (pre as HTMLElement).style.marginBottom = '0';
-                    
+
                     // Wrap the pre element
                     pre.parentNode?.insertBefore(wrapper, pre);
                     wrapper.appendChild(pre);
@@ -89,7 +89,7 @@ const BlogDetailsContent: FC<BlogDetailsContentProps> = ({ blog }) => {
                     button.style.display = 'flex';
                     button.style.alignItems = 'center';
                     button.style.gap = '6px';
-                    
+
                     button.innerHTML = '<i class="bi bi-clipboard"></i> Copy';
 
                     button.onmouseover = () => { button.style.backgroundColor = 'rgba(255,255,255,0.2)'; };

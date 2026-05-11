@@ -15,7 +15,7 @@ const PortfolioItemAction: FC<PortfolioItemActionProps> = ({ href, icon, delayCl
         <Link
             href={href}
             className={CN(
-                "w-11 h-11 flex items-center justify-center bg-primary/30 border border-primary/10 hover:bg-primary text-primary hover:text-white rounded-xl text-xl backdrop-blur-md transition-all duration-300 opacity-0 translate-y-5 group-hover:opacity-100 group-hover:translate-y-0",
+                "w-11 h-11 flex items-center justify-center bg-primary/30 border border-primary/10 hover:bg-primary text-primary hover:text-white rounded-xl text-xl backdrop-blur-md transition-all duration-300 opacity-100 md:opacity-0 md:translate-y-5 translate-y-0 group-hover:opacity-100 group-hover:translate-y-0",
                 delayClass
             )}
         >

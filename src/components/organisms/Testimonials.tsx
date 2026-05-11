@@ -79,7 +79,7 @@ const Testimonials: FC<TestimonialsProps> = ({ testimonials = [] }) => {
                         <div className='swiper-pagination-custom flex justify-center gap-3'></div>
                         {/* Custom Pagination */}
                         <Container variant='xl'>
-                            <div className="flex flex-col md:flex-row items-center justify-between gap-8 mt-12 bg-linear-to-r from-secondary/10 to-secondary/30 p-8 rounded-3xl border border-secondary/20 relative overflow-hidden group">
+                            <div className="flex flex-col md:flex-row items-center justify-between gap-8 mt-12 bg-linear-to-r from-secondary/10 to-secondary/30 p-4 md:p-8 rounded-3xl border border-secondary/20 relative overflow-hidden group">
                                 {/* Decorative element */}
                                 <div className="absolute -left-10 -top-10 w-32 h-32 bg-secondary/10 rounded-full blur-3xl group-hover:scale-150 transition-transform duration-700"></div>
 

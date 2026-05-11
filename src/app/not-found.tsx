@@ -32,7 +32,7 @@ export default function NotFound() {
             direction='col'
             justifyContent='center'
             alignItems='center'
-            className='fixed inset-0 bg-primary overflow-hidden'
+            className='fixed inset-0 bg-primary '
         >
             {/* Glowing blobs in background */}
             <div className='absolute w-[500px] h-[500px] rounded-full bg-secondary/5 blur-[120px] top-[-100px] left-[-100px] pointer-events-none' />
@@ -77,14 +77,14 @@ export default function NotFound() {
             </div>
 
             {/* Separator line */}
-            <div className='w-[120px] h-[2px] rounded-full bg-linear-to-r from-transparent via-secondary to-transparent mb-6' />
+            <div className='w-[120px] h-[2px] rounded-full bg-linear-to-r from-transparent via-secondary to-transparent mb-3' />
 
             {/* Message */}
             <Typography variant='h3' size='h4' color='white' className='mb-2 text-center px-4 font-bold'>
                 الصفحة غير موجودة
             </Typography>
 
-            <Typography variant='p' size='body2' color='light' className='text-center px-8 max-w-sm mb-8 leading-relaxed'>
+            <Typography variant='p' size='body2' color='light' className='text-center px-8 max-w-sm mb-3 leading-relaxed'>
                 يبدو أن الصفحة التي تبحث عنها قد اختفت أو لم تكن موجودة أصلاً.
             </Typography>
 
@@ -93,10 +93,6 @@ export default function NotFound() {
                 <Button href='/' variant='bg'>
                     <i className='bi bi-house me-2' />
                     العودة للرئيسية
-                </Button>
-                <Button onClick={() => window.history.back()} variant='outline'>
-                    <i className='bi bi-arrow-right me-2' />
-                    الصفحة السابقة
                 </Button>
             </Box>
 

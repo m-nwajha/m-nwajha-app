@@ -1,7 +1,7 @@
 'use client';
 
 import { FC } from 'react';
-import { Box, Typography, Badge } from '../ui';
+import { Box, Typography, Badge, Button } from '../ui';
 import BlogThumbnail from '../atoms/BlogThumbnail';
 import BlogRating from '../atoms/BlogRating';
 
@@ -49,9 +49,13 @@ const BlogItem: FC<BlogItemProps> = ({
                     </Link>
                 </Typography>
 
-                <Typography variant="p" size="h6" color="light" className="mb-6 opacity-70 line-clamp-2 leading-relaxed h-12 line-clamp-3">
+                <Typography variant="p" size="h6" color="light" className="mb-5 opacity-70 line-clamp-2 leading-relaxed h-12 line-clamp-3">
                     {description}
                 </Typography>
+
+                <Button className='mb-6 block lg:hidden' href={`/blogs/${detailsLink}`}>
+                    اقرا المزيد
+                </Button>
 
                 <div className="flex flex-wrap gap-2">
                     {tag.map((item, idx) => (

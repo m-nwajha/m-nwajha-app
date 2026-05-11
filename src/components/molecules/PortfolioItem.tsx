@@ -58,7 +58,7 @@ const PortfolioItem: FC<PortfolioItemProps> = ({
 
                     <div className="flex gap-4">
                         <PortfolioItemAction
-                            href={projectUrl}
+                            href={`https://${projectUrl}`}
                             icon="bi-link"
                             delayClass="delay-150"
                         />
