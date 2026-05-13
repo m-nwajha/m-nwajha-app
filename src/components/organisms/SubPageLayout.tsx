@@ -28,7 +28,7 @@ const SubPageLayout = ({
     withContainer = true
 }: SubPageLayoutProps) => {
     return (
-        <section className={CN("min-h-screen bg-dark pb-24 relative overflow-hidden flex flex-col", className)} id={id}>
+        <section className={CN("min-h-screen bg-dark relative overflow-hidden flex flex-col", className)} id={id}>
             {/* Premium Background Decorations */}
             <motion.div
                 initial={{ opacity: 0, x: 100, y: -100 }}

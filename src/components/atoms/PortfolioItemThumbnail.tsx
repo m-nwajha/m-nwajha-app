@@ -10,7 +10,7 @@ interface PortfolioItemThumbnailProps {
 
 const PortfolioItemThumbnail: FC<PortfolioItemThumbnailProps> = ({ src, alt }) => {
     return (
-        <figure className="relative m-0 overflow-hidden aspect-video">
+        <figure className="relative m-0 overflow-hidden">
             <Image
                 src={src}
                 height={500}
