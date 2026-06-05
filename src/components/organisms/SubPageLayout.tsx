@@ -50,7 +50,7 @@ const SubPageLayout = ({
 
             <div className="flex-1 relative z-10">
                 {withContainer ? (
-                    <Container className="mt-12">
+                    <Container className="mt-12 mb-12">
                         {(heroTitle || heroDescription) && (
                             <div className="text-center mb-12 max-w-3xl mx-auto">
                                 {heroTitle && (

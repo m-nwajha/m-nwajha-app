@@ -38,6 +38,7 @@ export const createPortfolioItem = async (req: NextRequest) => {
             projectData.client = formData.get('client') as string;
             projectData.projectUrl = formData.get('projectUrl') as string;
             projectData.githubUrl = formData.get('githubUrl') as string;
+            projectData.hideFromHome = formData.get('hideFromHome') === 'true';
 
             // Handle main image upload
             const imageFile = formData.get('image');
@@ -205,6 +206,11 @@ export const updatePortfolioItem = async (id: string, req: NextRequest) => {
                 const val = formData.get(key);
                 if (val !== null) updateData[key] = val;
             });
+
+            const hideVal = formData.get('hideFromHome');
+            if (hideVal !== null) {
+                updateData.hideFromHome = hideVal === 'true';
+            }
 
             // Handle main image
             const imageFile = formData.get('image');

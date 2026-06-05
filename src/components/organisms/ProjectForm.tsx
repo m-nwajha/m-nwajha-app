@@ -30,6 +30,7 @@ const ProjectForm: React.FC<ProjectFormProps> = ({ project, onClose, onSuccess }
         githubUrl: project?.githubUrl || '',
         techStack: project?.techStack?.join(', ') || '',
         features: project?.features?.join('\n') || '',
+        hideFromHome: project?.hideFromHome || false,
     });
 
     const [imageFile, setImageFile] = useState<File | null>(null);
@@ -87,6 +88,7 @@ const ProjectForm: React.FC<ProjectFormProps> = ({ project, onClose, onSuccess }
             data.append('client', formData.client);
             data.append('projectUrl', formData.projectUrl);
             data.append('githubUrl', formData.githubUrl);
+            data.append('hideFromHome', String(formData.hideFromHome));
 
             const techStackArr = formData.techStack.split(',').map((s: string) => s.trim()).filter(Boolean);
             const featuresArr = formData.features.split('\n').map((s: string) => s.trim()).filter(Boolean);
@@ -161,6 +163,18 @@ const ProjectForm: React.FC<ProjectFormProps> = ({ project, onClose, onSuccess }
                                 placeholder="مثال: تطبيق متجر إلكتروني"
                                 required
                             />
+                        </div>
+                        <div className="flex items-center gap-2">
+                            <input
+                                type="checkbox"
+                                id="hideFromHome"
+                                checked={formData.hideFromHome}
+                                onChange={(e) => setFormData({ ...formData, hideFromHome: e.target.checked })}
+                                className="w-4 h-4 rounded border-white/10 bg-white/5 text-secondary focus:ring-secondary focus:ring-offset-dark"
+                            />
+                            <label htmlFor="hideFromHome" className="text-sm font-medium text-light/60 cursor-pointer">
+                                إخفاء هذا العمل من الصفحة الرئيسية (سيظهر فقط في صفحة الأعمال)
+                            </label>
                         </div>
 
                         <div className="grid grid-cols-2 gap-4">

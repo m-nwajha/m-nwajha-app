@@ -5,8 +5,8 @@ import { Typography, Badge } from '../ui';
 import { motion } from 'framer-motion';
 import BlogRatingScale from '../atoms/BlogRatingScale';
 import BlogSocialShare from '../molecules/BlogSocialShare';
-import BlogComments from '../molecules/BlogComments';
-import Link from 'next/link';
+// import BlogComments from '../molecules/BlogComments';
+// import Link from 'next/link';
 
 interface BlogDetailsContentProps {
     blog: {
@@ -125,7 +125,7 @@ const BlogDetailsContent: FC<BlogDetailsContentProps> = ({ blog }) => {
 
     return (
         <motion.div
-            className="blog-details-content flex flex-col h-full lg:pl-8"
+            className="blog-details-content flex flex-col h-full px-4"
             variants={containerVariants}
             initial="hidden"
             whileInView="visible"
@@ -165,10 +165,10 @@ const BlogDetailsContent: FC<BlogDetailsContentProps> = ({ blog }) => {
             {/* Tags/Slug Section for SEO */}
 
             {blog.tag && blog.tag.length > 0 && (
-                <div className="flex items-center gap-3 flex-wrap">
+                <div className="flex items-start gap-3 flex-col mt-3">
                     <span className="text-light/50 text-sm">الوسوم:</span>
 
-                    <div className="tag-badges flex flex-wrap gap-2 mt-6">
+                    <div className="tag-badges flex flex-wrap gap-2">
                         {blog.tag.map((item, index) => (
                             <motion.div
                                 key={index}
@@ -177,11 +177,11 @@ const BlogDetailsContent: FC<BlogDetailsContentProps> = ({ blog }) => {
                                 viewport={{ once: true }}
                                 transition={{ duration: 0.3, delay: index * 0.1 }}
                             >
-                                <Link href={`/blogs/tag/${encodeURIComponent(item)}`} className="block transform transition-transform hover:scale-105 active:scale-95">
+                                <div className="block transform transition-transform hover:scale-105 active:scale-95">
                                     <Badge variant="outline" showHash={true} className="cursor-pointer hover:border-secondary/40 hover:bg-secondary/5">
                                         {item}
                                     </Badge>
-                                </Link>
+                                </div>
                             </motion.div>
                         ))}
                     </div>

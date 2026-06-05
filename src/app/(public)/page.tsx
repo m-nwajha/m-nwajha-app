@@ -40,7 +40,7 @@ export const metadata: Metadata = {
 
 async function getPortfolioData() {
   try {
-    const items = await Portfolio.find({}).sort({ createdAt: -1 }).lean();
+    const items = await Portfolio.find({ hideFromHome: { $ne: true } }).sort({ createdAt: -1 }).lean();
     return items.map(item => ({
       ...item,
       _id: String(item._id)

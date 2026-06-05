@@ -53,11 +53,11 @@ const BlogItem: FC<BlogItemProps> = ({
                     {description}
                 </Typography>
 
-                <Button className='mb-6 block lg:hidden' href={`/blogs/${detailsLink}`}>
+                <Button className='mb-6' href={`/blogs/${detailsLink}`}>
                     اقرا المزيد
                 </Button>
 
-                <div className="flex flex-wrap gap-2">
+                {/* <div className="flex flex-wrap gap-2">
                     {tag.map((item, idx) => (
                         <Link key={idx} href={`/blogs/tag/${encodeURIComponent(item)}`} className="block transform transition-transform hover:scale-105 active:scale-95">
                             <Badge variant="outline" showHash={true} className="cursor-pointer hover:border-secondary/40 hover:bg-secondary/5">
@@ -65,7 +65,7 @@ const BlogItem: FC<BlogItemProps> = ({
                             </Badge>
                         </Link>
                     ))}
-                </div>
+                </div> */}
             </div>
         </article >
     );

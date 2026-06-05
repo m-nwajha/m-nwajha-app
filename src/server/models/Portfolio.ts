@@ -17,6 +17,7 @@ export interface IPortfolio extends Document {
     features?: string[];
     gallery?: string[];
     accordionItems?: { content: string; }[];
+    hideFromHome?: boolean;
     createdAt: Date;
     updatedAt: Date;
 }
@@ -43,6 +44,7 @@ const PortfolioSchema: Schema = new Schema(
                 content: { type: String },
             }
         ],
+        hideFromHome: { type: Boolean, default: false },
     },
     {
         timestamps: true,
