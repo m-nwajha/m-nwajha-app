@@ -1,8 +1,6 @@
 'use client';
 import { ADD_TESTIMONIAL } from '@/constants/testimonials';
-import PageTitle from '../atoms/PageTitle';
 import TestimonialForm from '../organisms/TestimonialForm';
-import { Container, Typography } from '../ui';
 
 import SubPageLayout from '../organisms/SubPageLayout';
 

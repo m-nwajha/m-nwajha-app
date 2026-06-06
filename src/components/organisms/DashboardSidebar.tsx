@@ -8,6 +8,7 @@ import useAPI from '@/hooks/useAPI';
 
 const sidebarLinks = [
     { href: '/', label: 'زيارة الموقع', icon: 'bi-house' },
+    { href: "/nawjha-portfolio", label: "معرض الأعمال", icon: "bi-folder" },
     { href: '/dashboard', label: 'نظرة عامة', icon: 'bi-grid-1x2' },
     { href: '/dashboard/portfolio', label: 'المشاريع', icon: 'bi-grid' },
     { href: '/dashboard/blogs', label: 'المدونة', icon: 'bi-journal-text' },
@@ -53,7 +54,7 @@ const DashboardSidebar: React.FC<DashboardSidebarProps> = ({ isOpen, onClose }) 
                     isOpen ? "translate-x-0" : "translate-x-full"
                 )}
             >
-                <div className="px-4 py-8">
+                <div className="px-4 py-5">
                     <ul className="space-y-2">
                         {sidebarLinks.map((link) => {
                             const isActive = pathname === link.href;

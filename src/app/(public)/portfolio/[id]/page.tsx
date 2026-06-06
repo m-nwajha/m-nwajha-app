@@ -13,7 +13,7 @@ export async function generateMetadata({
     try {
         await connectDB();
         const { id } = await params;
-        const project = await Portfolio.findById(id).select('title description image tech').lean();
+        const project = await Portfolio.findById(id).select('title description image tech hideFromHome').lean();
 
         if (!project) {
             return {
@@ -27,9 +27,10 @@ export async function generateMetadata({
             (project as any).description ?? 'اكتشف تفاصيل المشروع على Nawjha Tech.';
         const image = (project as any).image ?? '/assets/images/og-image.png';
         const tech: string[] = (project as any).tech ?? [];
+        const hideFromHome = (project as any).hideFromHome ?? false;
         const url = `${BASE_URL}/portfolio/${id}`;
 
-        return {
+        const baseMetadata: Metadata = {
             title,
             description,
             authors: [{ name: 'Mohamed ALnawjha', url: BASE_URL }],
@@ -52,6 +53,12 @@ export async function generateMetadata({
                 creator: '@nawjha_m',
             },
         };
+
+        if (hideFromHome) {
+            baseMetadata.robots = { index: false, follow: false };
+        }
+
+        return baseMetadata;
     } catch {
         return { title: 'Nawjha Tech Portfolio' };
     }

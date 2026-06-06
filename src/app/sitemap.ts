@@ -26,7 +26,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     let portfolioRoutes: MetadataRoute.Sitemap = [];
     try {
         await connectDB();
-        const projects = await Portfolio.find({}).select('_id updatedAt').lean();
+        const projects = await Portfolio.find({ hideFromHome: { $ne: true } }).select('_id updatedAt').lean();
         portfolioRoutes = projects.map((p: any) => ({
             url: `${BASE_URL}/portfolio/${p._id}`,
             lastModified: p.updatedAt ? new Date(p.updatedAt) : new Date(),

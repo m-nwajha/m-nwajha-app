@@ -33,6 +33,21 @@ const TestimonialForm = () => {
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
+      const validTypes = ['image/jpeg', 'image/png', 'image/jpg'];
+      if (!validTypes.includes(file.type)) {
+        showToast('عذراً، يُسمح فقط برفع الصور بصيغة PNG أو JPG أو JPEG.', 'error');
+        e.target.value = '';
+        return;
+      }
+
+      const maxSizeInMB = 5;
+      const maxSizeInBytes = maxSizeInMB * 1024 * 1024;
+      if (file.size > maxSizeInBytes) {
+        showToast(`حجم الصورة كبير جداً. الحد الأقصى المسموح به هو ${maxSizeInMB} ميغابايت.`, 'error');
+        e.target.value = '';
+        return;
+      }
+
       setImageFile(file);
       const reader = new FileReader();
       reader.onloadend = () => {
@@ -119,7 +134,7 @@ const TestimonialForm = () => {
               type='file'
               onChange={handleFileChange}
               className='absolute inset-0 opacity-0 cursor-pointer z-10'
-              accept='image/*'
+              accept='.jpg,.jpeg,.png'
             />
           </div>
           <p className='text-[10px] text-light/40 mt-2'>
