@@ -3,6 +3,7 @@ import { Almarai, Space_Grotesk } from 'next/font/google';
 import '../styles/globals.css';
 import { ToastProvider } from '@/components/ui';
 import { AuthProvider } from '@/context/AuthContext';
+import { Analytics } from "@vercel/analytics/next"
 
 const almarai = Almarai({
   variable: '--font-almarai',
@@ -139,6 +140,7 @@ export default function RootLayout({
       <body dir='rtl'>
         <AuthProvider>
           <ToastProvider>
+            <Analytics />
             {children}
           </ToastProvider>
         </AuthProvider>
