@@ -16,7 +16,7 @@ const PortfolioItemThumbnail: FC<PortfolioItemThumbnailProps> = ({ src, alt }) =
                 height={500}
                 width={500}
                 unoptimized
-                className="w-full h-full object-cover transition-transform duration-700 ease-in-out group-hover:scale-110"
+                className="w-full h-[360px] object-cover transition-transform duration-700 ease-in-out group-hover:scale-110"
                 alt={alt}
                 loading="lazy"
             />

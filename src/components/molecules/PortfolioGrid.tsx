@@ -4,6 +4,7 @@ import { FC, useState } from 'react';
 import FilterBar from './FilterBar';
 import { PORTFOLIO_DATA } from '@/constants/portfolio';
 import PortfolioItem from './PortfolioItem';
+import { Grid } from '../ui';
 
 interface PortfolioGridProps {
     initialData: any[];
@@ -25,7 +26,7 @@ const PortfolioGrid: FC<PortfolioGridProps> = ({ initialData }) => {
                 onFilterChange={setActiveFilter}
             />
 
-            <div className="columns-1 md:columns-2 lg:columns-3 xl:columns-4 gap-6 px-0">
+            <Grid sm={1} md={2} lg={4} className="gap-6 px-0">
                 {filteredItems.slice(0, 12).map((item: any) => (
                     <PortfolioItem
                         key={String(item._id)}
@@ -37,7 +38,7 @@ const PortfolioGrid: FC<PortfolioGridProps> = ({ initialData }) => {
                         projectUrl={item.projectUrl}
                     />
                 ))}
-            </div>
+            </Grid>
         </div>
     );
 };

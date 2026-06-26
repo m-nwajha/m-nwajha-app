@@ -55,7 +55,7 @@ const PortfolioPage = ({ initialProjects = [] }: PortfolioPageProps) => {
             />
 
             {filteredProjects.length > 0 ? (
-                <div className="columns-1 md:columns-2 lg:columns-3 xl:columns-4 gap-6 px-0">
+                <Grid sm={1} md={2} lg={4} className="gap-6 px-0">
                     <AnimatePresence mode="popLayout">
                         {filteredProjects.map((item: any, index) => (
                             <motion.div
@@ -78,7 +78,7 @@ const PortfolioPage = ({ initialProjects = [] }: PortfolioPageProps) => {
                             </motion.div>
                         ))}
                     </AnimatePresence>
-                </div>
+                </Grid>
             ) : (
                 <div className="text-center py-20">
                     <i className="bi bi-folder-x text-6xl text-secondary/20 mb-6 block"></i>
